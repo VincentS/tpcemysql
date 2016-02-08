@@ -48,10 +48,14 @@ CDBConnection::CDBConnection(const char *szHost, const char *szDBName,
     if ( SQLAllocHandle(SQL_HANDLE_STMT, m_Conn, &m_Stmt2) != SQL_SUCCESS)
 	ThrowError(CODBCERR::eAllocHandle, SQL_HANDLE_DBC, m_Conn);
 #ifdef HANA_ODBC
-    rc = SQLExecDirect(stmt, (SQLCHAR*)"SET SCHEMA TPCE", SQL_NTS);
+    rc = SQLExecDirect(m_Stmt, (SQLCHAR*)"SET SCHEMA TPCE", SQL_NTS);
     if (rc != SQL_SUCCESS && rc != SQL_SUCCESS_WITH_INFO)
-        ThrowError(CODBCERR::eExecDirect, SQL_HANDLE_STMT, stmt, __FILE__, __LINE__);
+        ThrowError(CODBCERR::eExecDirect, SQL_HANDLE_STMT, m_Stmt, __FILE__, __LINE__);
 
+    rc = SQLExecDirect(m_Stmt2, (SQLCHAR*)"SET SCHEMA TPCE", SQL_NTS);
+    if (rc != SQL_SUCCESS && rc != SQL_SUCCESS_WITH_INFO)
+        ThrowError(CODBCERR::eExecDirect, SQL_HANDLE_STMT, m_Stmt2, __FILE__, __LINE__);
+#endif
 #ifdef USE_PREPARE
     if (m_PrepareType == 1) //Prapered Statements for CESUT
     {

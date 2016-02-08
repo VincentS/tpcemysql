@@ -58,15 +58,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DBConnection.cpp" pinned="false" current-in-tab="false">
+      <file leaf-file-name="DBConnection.cpp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/DBConnection.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-14.444445">
-              <caret line="52" column="85" selection-start-line="52" selection-start-column="85" selection-end-line="52" selection-end-column="85" />
+            <state vertical-scroll-proportion="0.81545067">
+              <caret line="56" column="66" selection-start-line="56" selection-start-column="66" selection-end-line="56" selection-end-column="66" />
               <folding>
                 <element signature="e#289#332#0" expanded="true" />
                 <element signature="e#1037#1192#0" expanded="true" />
-                <marker date="1454927816000" expanded="true" signature="251:1694" placeholder="{...}" />
+                <element signature="e#2177#63164#0" expanded="true" />
+                <element signature="e#63240#63284#0" expanded="true" />
+                <element signature="e#63316#63744#0" expanded="true" />
+                <element signature="e#66135#66158#0" expanded="true" />
+                <element signature="e#66199#66231#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -101,10 +105,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="EGenSimpleTest.h" pinned="false" current-in-tab="true">
+      <file leaf-file-name="EGenSimpleTest.h" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/inc/EGenSimpleTest.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.37848607">
+            <state vertical-scroll-proportion="0.0">
               <caret line="19" column="19" selection-start-line="19" selection-start-column="19" selection-end-line="19" selection-end-column="19" />
               <folding>
                 <element signature="e#105#124#0" expanded="true" />
@@ -173,8 +177,8 @@
         <option value="$PROJECT_DIR$/inc/odbc_wrapper.h" />
         <option value="$PROJECT_DIR$/prj/Makefile" />
         <option value="$PROJECT_DIR$/src/EGenSimpleTest.cpp" />
-        <option value="$PROJECT_DIR$/src/DBConnection.cpp" />
         <option value="$PROJECT_DIR$/inc/EGenSimpleTest.h" />
+        <option value="$PROJECT_DIR$/src/DBConnection.cpp" />
       </list>
     </option>
   </component>
@@ -801,18 +805,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/DBConnection.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-14.444445">
-          <caret line="52" column="85" selection-start-line="52" selection-start-column="85" selection-end-line="52" selection-end-column="85" />
-          <folding>
-            <element signature="e#289#332#0" expanded="true" />
-            <element signature="e#1037#1192#0" expanded="true" />
-            <marker date="1454927816000" expanded="true" signature="251:1694" placeholder="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/EGenSimpleTest.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-1.6666666">
@@ -832,10 +824,26 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/inc/EGenSimpleTest.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.37848607">
+        <state vertical-scroll-proportion="0.0">
           <caret line="19" column="19" selection-start-line="19" selection-start-column="19" selection-end-line="19" selection-end-column="19" />
           <folding>
             <element signature="e#105#124#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/DBConnection.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.81545067">
+          <caret line="56" column="66" selection-start-line="56" selection-start-column="66" selection-end-line="56" selection-end-column="66" />
+          <folding>
+            <element signature="e#289#332#0" expanded="true" />
+            <element signature="e#1037#1192#0" expanded="true" />
+            <element signature="e#2177#63164#0" expanded="true" />
+            <element signature="e#63240#63284#0" expanded="true" />
+            <element signature="e#63316#63744#0" expanded="true" />
+            <element signature="e#66135#66158#0" expanded="true" />
+            <element signature="e#66199#66231#0" expanded="true" />
           </folding>
         </state>
       </provider>
