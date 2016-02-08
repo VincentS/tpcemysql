@@ -1,11 +1,10 @@
 Introduction
 =============
-This is a modified version based on the TPC-E version from Percona.
-The package is based on tpc-e workload described  on http://www.tpc.org/tpce/default.asp
+This is a modified version based on the TPC-E version from Percona https://www.percona.com/blog/2010/02/08/introducing-tpce-like-workload-for-mysql/.
+The package is based on the TPC-E workload described on http://www.tpc.org/tpce/default.asp
 and uses EGen software provided by TPC. 
 
-Modifications from the TPC-E Percona version are added support for SAP HANA.
-
+In this package SAP HANA Support was added to the TPC-E Percona version.
 
 Installation
 ============
