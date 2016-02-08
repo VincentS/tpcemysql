@@ -8,7 +8,7 @@ using namespace TPCE;
 extern int MEESUT_ThreadCount; //MEESUT.cpp
 
 char szInDir[iMaxPath] = "flat_in";
-char szHost[iMaxHostname] = "";
+char szHost[iMaxHostname] = "localhost";
 char szDBName[iMaxDBName] = "tpce";
 char szDBUser[iMaxDBName] = "tpce";
 char szDBPass[iMaxDBName] = "tpce";
@@ -620,7 +620,7 @@ int main(int argc, char* argv[])
 
     //Ramp up
     for(int i=0; i< (iRampupDuration / PRINT_INTERVAL); i++) {
-	pause();
+		pause();
     }
 
 
@@ -631,7 +631,7 @@ int main(int argc, char* argv[])
     cout<<"sec. |    TR,    MF |   DM |   BV,    CP,    MW,    SD,    TL,    TO,    TS,    TU | MEEThreads, ReqQueue"<<endl;
     cout<<"      (1st line: count, 2nd line: 90%ile response [msec.])"<<endl<<endl<<flush;
     for(int i=0; i< (iTestDuration / PRINT_INTERVAL); i++) {
-	pause();
+		pause();
     }
 
 
@@ -641,7 +641,7 @@ int main(int argc, char* argv[])
     itval.it_value.tv_sec = 0;
     itval.it_value.tv_usec = 0;
     if( setitimer(ITIMER_REAL, &itval, NULL) == -1 ) {
-	cerr<<"error: setitimer"<<endl;
+		cerr<<"error: setitimer"<<endl;
     }
 
 
@@ -651,7 +651,7 @@ int main(int argc, char* argv[])
     sem_post(&DMTrigger_sem); //Wake DMSUT up
     for(int i=0; i < iUsers + 2; i++)
     {
-	pthread_join( t[i], NULL );
+		pthread_join( t[i], NULL );
     }
 
     cout << endl << "[Histograms]" << endl;

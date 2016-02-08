@@ -9,6 +9,7 @@
 #include <assert.h>
 #include <pthread.h>
 #include <semaphore.h>
+#include <time.h>
 using namespace std;
 
 #include <vector>
@@ -17,6 +18,7 @@ using namespace std;
 #include <sqlext.h>
 #include <sqltypes.h>
 #include <stdlib.h>
+#include <unistd.h>
 
 #ifdef ORACLE_ODBC
 inline void numeric2bigint(long long* dest, SQL_NUMERIC_STRUCT* src)
