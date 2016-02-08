@@ -6,7 +6,7 @@
 using namespace TPCE;
 
 CDBConnection::CDBConnection(const char *szHost, const char *szDBName,
-			     const char *szDBUser, const char *szDBPass, int szPrepareType)
+			     const char *szDBUser, const char *szDBPass,const char *szSName, int szPrepareType)
 {
     SQLRETURN rc;
 
@@ -48,13 +48,26 @@ CDBConnection::CDBConnection(const char *szHost, const char *szDBName,
     if ( SQLAllocHandle(SQL_HANDLE_STMT, m_Conn, &m_Stmt2) != SQL_SUCCESS)
 	ThrowError(CODBCERR::eAllocHandle, SQL_HANDLE_DBC, m_Conn);
 #ifdef HANA_ODBC
+    //SQLLEN lenszSName = 0;
+    //SQLBindParameter(m_Stmt, 1, SQL_PARAM_INPUT, SQL_C_CHAR,
+    //                SQL_CHAR, sizeof(szSName), 0, (SQLCHAR*)szSName, sizeof(szSName),
+    //                &lenszSName);
+    // SQLPrepare(m_Stmt,(SQLCHAR*)"SET SCHEMA ?", SQL_NTS);
+    // rc = SQLExecute(m_Stmt);
     rc = SQLExecDirect(m_Stmt, (SQLCHAR*)"SET SCHEMA TPCE", SQL_NTS);
     if (rc != SQL_SUCCESS && rc != SQL_SUCCESS_WITH_INFO)
         ThrowError(CODBCERR::eExecDirect, SQL_HANDLE_STMT, m_Stmt, __FILE__, __LINE__);
+    //SQLFreeStmt(m_Stmt,SQL_UNBIND);
+     //SQLBindParameter(m_Stmt2, 1, SQL_PARAM_INPUT, SQL_C_CHAR,
+    //                SQL_CHAR, sizeof(szSName), 0, (SQLCHAR*)szSName, sizeof(szSName),
+    //                &lenszSName);
+    // SQLPrepare(m_Stmt2,(SQLCHAR*)"SET SCHEMA ?", SQL_NTS);
+    // rc = SQLExecute(m_Stmt2);
 
     rc = SQLExecDirect(m_Stmt2, (SQLCHAR*)"SET SCHEMA TPCE", SQL_NTS);
     if (rc != SQL_SUCCESS && rc != SQL_SUCCESS_WITH_INFO)
         ThrowError(CODBCERR::eExecDirect, SQL_HANDLE_STMT, m_Stmt2, __FILE__, __LINE__);
+    //SQLFreeStmt(m_Stmt2,SQL_UNBIND);
 #endif
 #ifdef USE_PREPARE
     if (m_PrepareType == 1) //Prapered Statements for CESUT

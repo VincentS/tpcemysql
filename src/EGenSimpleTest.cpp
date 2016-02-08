@@ -12,6 +12,8 @@ char szHost[iMaxHostname] = "localhost";
 char szDBName[iMaxDBName] = "tpce";
 char szDBUser[iMaxDBName] = "tpce";
 char szDBPass[iMaxDBName] = "tpce";
+char szSName[iMaxSchemaname] = "TPCE";
+
 TIdent iConfiguredCustomerCount = iDefaultCustomerCount;
 TIdent iActiveCustomerCount = iDefaultCustomerCount;
 int iScaleFactor = 500;
@@ -81,6 +83,9 @@ void Usage()
 #else
 	"   -D string   " << szDBName << "\t\t      Data source name" << endl <<
 #endif
+#ifdef HANA_ODBC
+	"   -SC string " << szSName << "\t		Name of Database Schema" << endl <<
+#endif
 	"   -U string   " << szDBUser << "\t\t      Database user" << endl <<
 	"   -P string   " << szDBPass << "\t\t      Database password" << endl <<
 	"   -c number   " << iConfiguredCustomerCount << "\t\t      Configured customer count" << endl <<
@@ -140,6 +145,11 @@ void ParseCommandLine( int argc, char *argv[] )
 	    case 'S':       // Database host name.
 #ifdef ODBC_WRAPPER
 		strncpy(szHost, vp, sizeof(szHost));
+		break;
+#endif
+		case 'SC':
+#ifdef HANA_ODBC
+		strncpy(szSName, vp, sizeof(szSName));
 		break;
 #endif
 	    case 'D':       // Database name.
@@ -217,7 +227,7 @@ void* thread_CE(void *UniqueID)
 			    iActiveCustomerCount, szInDir);
     try
     {
-	m_pCCESUT = new CCESUT(szHost, szDBName, szDBUser, szDBPass); //throw CODBCERR
+	m_pCCESUT = new CCESUT(szHost, szDBName, szDBUser, szDBPass,szSName); //throw CODBCERR
     }
     catch (const CODBCERR* e)
     {
@@ -283,7 +293,7 @@ void* thread_DM(void *UniqueID)
 
     try
     {
-	m_pCDMSUT = new CDMSUT(szHost, szDBName, szDBUser, szDBPass); //throw CODBCERR
+	m_pCDMSUT = new CDMSUT(szHost, szDBName, szDBUser, szDBPass,szSName); //throw CODBCERR
     }
     catch (const CODBCERR* e)
     {
@@ -338,7 +348,7 @@ void* thread_MEE(void *UniqueID)
 			    iActiveCustomerCount, szInDir);
 
     //MEMO: 6th parameter setting may be essential for throughput (MaxTherads)
-    m_pCMEESUT = new CMEESUT(szHost, szDBName, szDBUser, szDBPass, 30, 120);
+    m_pCMEESUT = new CMEESUT(szHost, szDBName, szDBUser, szDBPass,szSName, 30, 120);
     m_pCMEE = new CMEE( 0, m_pCMEESUT, g_pLog, m_InputFiles, (long)UniqueID);
     m_pCMEE->SetBaseTime();
 

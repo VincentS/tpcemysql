@@ -11,7 +11,18 @@
     </ADDITIONAL_GENERATION_ENVIRONMENT>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bba0d6fd-e65b-43b9-a676-992e7a07b388" name="Default" comment="" />
+    <list default="true" id="bba0d6fd-e65b-43b9-a676-992e7a07b388" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/inc/CESUT.h" afterPath="$PROJECT_DIR$/inc/CESUT.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/inc/DBConnection.h" afterPath="$PROJECT_DIR$/inc/DBConnection.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/inc/DMSUT.h" afterPath="$PROJECT_DIR$/inc/DMSUT.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/inc/MEESUT.h" afterPath="$PROJECT_DIR$/inc/MEESUT.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/inc/MiscConsts.h" afterPath="$PROJECT_DIR$/inc/MiscConsts.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CESUT.cpp" afterPath="$PROJECT_DIR$/src/CESUT.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/DBConnection.cpp" afterPath="$PROJECT_DIR$/src/DBConnection.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/EGenSimpleTest.cpp" afterPath="$PROJECT_DIR$/src/EGenSimpleTest.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/MEESUT.cpp" afterPath="$PROJECT_DIR$/src/MEESUT.cpp" />
+    </list>
     <ignored path="tpcemysql.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -35,7 +46,7 @@
         <entry file="file://$PROJECT_DIR$/src/CustomerPositionDB.cpp">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="53" column="85" selection-start-line="52" selection-start-column="4" selection-end-line="53" selection-end-column="85" />
+              <caret line="54" column="25" selection-start-line="54" selection-start-column="25" selection-end-line="54" selection-end-column="25" />
               <folding>
                 <element signature="e#417#477#0" expanded="true" />
                 <element signature="e#676#751#0" expanded="true" />
@@ -48,29 +59,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TxnDBBase.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/inc/TxnDBBase.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="14" column="14" selection-start-line="14" selection-start-column="14" selection-end-line="14" selection-end-column="14" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="DBConnection.cpp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/DBConnection.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.81545067">
-              <caret line="56" column="66" selection-start-line="56" selection-start-column="66" selection-end-line="56" selection-end-column="66" />
+            <state vertical-scroll-proportion="0.5809129">
+              <caret line="68" column="39" selection-start-line="68" selection-start-column="39" selection-end-line="68" selection-end-column="39" />
               <folding>
-                <element signature="e#289#332#0" expanded="true" />
-                <element signature="e#1037#1192#0" expanded="true" />
-                <element signature="e#2177#63164#0" expanded="true" />
-                <element signature="e#63240#63284#0" expanded="true" />
-                <element signature="e#63316#63744#0" expanded="true" />
-                <element signature="e#66135#66158#0" expanded="true" />
-                <element signature="e#66199#66231#0" expanded="true" />
+                <element signature="e#309#352#0" expanded="true" />
+                <element signature="e#1057#1212#0" expanded="true" />
+                <element signature="e#2867#63854#0" expanded="true" />
+                <element signature="e#63930#63974#0" expanded="true" />
+                <element signature="e#64006#64434#0" expanded="true" />
+                <element signature="e#66825#66848#0" expanded="true" />
+                <element signature="e#66889#66921#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -80,7 +81,7 @@
         <entry file="file://$PROJECT_DIR$/inc/DBConnection.h">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="135" column="6" selection-start-line="135" selection-start-column="6" selection-end-line="135" selection-end-column="6" />
+              <caret line="147" column="73" selection-start-line="147" selection-start-column="73" selection-end-line="147" selection-end-column="73" />
               <folding />
             </state>
           </provider>
@@ -89,75 +90,94 @@
       <file leaf-file-name="EGenSimpleTest.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/EGenSimpleTest.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-1.6666666">
-              <caret line="3" column="29" selection-start-line="3" selection-start-column="29" selection-end-line="3" selection-end-column="29" />
+            <state vertical-scroll-proportion="-9.259259">
+              <caret line="350" column="25" selection-start-line="350" selection-start-column="25" selection-end-line="350" selection-end-column="25" />
               <folding>
-                <element signature="e#1970#2110#0" expanded="true" />
-                <element signature="e#4046#4091#0" expanded="true" />
-                <element signature="e#11360#11390#0" expanded="true" />
-                <element signature="e#11519#11552#0" expanded="true" />
-                <element signature="e#11621#11660#0" expanded="true" />
-                <element signature="e#12066#12185#0" expanded="true" />
-                <element signature="e#12966#13037#0" expanded="true" />
-                <element signature="e#13157#13301#0" expanded="true" />
+                <element signature="e#2010#2150#0" expanded="true" />
+                <element signature="e#2256#2327#0" expanded="true" />
+                <element signature="e#3197#3288#0" expanded="true" />
+                <element signature="e#4183#4228#0" expanded="true" />
+                <element signature="e#4268#4315#0" expanded="true" />
+                <element signature="e#9104#9168#0" expanded="true" />
+                <element signature="e#11608#11638#0" expanded="true" />
+                <element signature="e#11660#11695#0" expanded="true" />
+                <element signature="e#11718#11749#0" expanded="true" />
+                <element signature="e#11767#11800#0" expanded="true" />
+                <element signature="e#11869#11908#0" expanded="true" />
+                <element signature="e#12314#12433#0" expanded="true" />
+                <element signature="e#13214#13285#0" expanded="true" />
+                <element signature="e#13405#13549#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="EGenSimpleTest.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/inc/EGenSimpleTest.h">
+      <file leaf-file-name="DMSUT.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/inc/DMSUT.h">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="19" column="19" selection-start-line="19" selection-start-column="19" selection-end-line="19" selection-end-column="19" />
+              <caret line="20" column="4" selection-start-line="20" selection-start-column="4" selection-end-line="20" selection-end-column="4" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DMSUTInterface.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/inc/DMSUTInterface.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="49" column="6" selection-start-line="49" selection-start-column="6" selection-end-line="49" selection-end-column="6" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CESUT.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/inc/CESUT.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="11" column="6" selection-start-line="11" selection-start-column="6" selection-end-line="11" selection-end-column="6" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MEESUT.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/inc/MEESUT.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="25" column="72" selection-start-line="25" selection-start-column="72" selection-end-line="25" selection-end-column="72" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MEESUT.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/MEESUT.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-8.703704">
+              <caret line="40" column="9" selection-start-line="40" selection-start-column="9" selection-end-line="40" selection-end-column="9" />
               <folding>
-                <element signature="e#105#124#0" expanded="true" />
+                <element signature="e#5565#5599#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Makefile" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/prj/Makefile">
+      <file leaf-file-name="CESUT.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/CESUT.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="46" column="99" selection-start-line="46" selection-start-column="99" selection-end-line="46" selection-end-column="134" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ODBCERR.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/inc/ODBCERR.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="odbc_wrapper.cpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/odbc_wrapper.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="4" column="18" selection-start-line="4" selection-start-column="18" selection-end-line="4" selection-end-column="18" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="EGenLogFormatterTab.cpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/EGenLogFormatterTab.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state vertical-scroll-proportion="-3.8888888">
+              <caret line="10" column="8" selection-start-line="10" selection-start-column="8" selection-end-line="10" selection-end-column="8" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -176,8 +196,15 @@
         <option value="$PROJECT_DIR$/src/SecurityDetailDB.cpp" />
         <option value="$PROJECT_DIR$/inc/odbc_wrapper.h" />
         <option value="$PROJECT_DIR$/prj/Makefile" />
-        <option value="$PROJECT_DIR$/src/EGenSimpleTest.cpp" />
         <option value="$PROJECT_DIR$/inc/EGenSimpleTest.h" />
+        <option value="$PROJECT_DIR$/inc/MiscConsts.h" />
+        <option value="$PROJECT_DIR$/inc/DBConnection.h" />
+        <option value="$PROJECT_DIR$/src/MEESUT.cpp" />
+        <option value="$PROJECT_DIR$/src/CESUT.cpp" />
+        <option value="$PROJECT_DIR$/inc/CESUT.h" />
+        <option value="$PROJECT_DIR$/inc/MEESUT.h" />
+        <option value="$PROJECT_DIR$/src/EGenSimpleTest.cpp" />
+        <option value="$PROJECT_DIR$/inc/DMSUT.h" />
         <option value="$PROJECT_DIR$/src/DBConnection.cpp" />
       </list>
     </option>
@@ -187,10 +214,11 @@
   <component name="JsGulpfileManager">
     <detection-done>true</detection-done>
   </component>
+  <component name="OCFindUsagesOptions" text="true" ivars="false" properties="true" derivedClasses="false" />
   <component name="ProjectFrameBounds">
-    <option name="y" value="23" />
+    <option name="y" value="-22" />
     <option name="width" value="1440" />
-    <option name="height" value="873" />
+    <option name="height" value="895" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -359,7 +387,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1440" height="873" extended-state="0" />
+    <frame x="0" y="-22" width="1440" height="895" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.35588443" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -395,45 +423,12 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <option name="time" value="1" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/DM.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/inc/CE.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/BaseLogger.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="40" column="9" selection-start-line="40" selection-start-column="9" selection-end-line="40" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/EGenGenerateAndLoad.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/InputFlatFilesStructure.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -615,9 +610,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="46" column="38" selection-start-line="46" selection-start-column="38" selection-end-line="46" selection-end-column="38" />
-          <folding>
-            <element signature="e#2094#2133#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -632,25 +624,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="38" column="0" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/CESUT.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="13" column="14" selection-start-line="13" selection-start-column="14" selection-end-line="13" selection-end-column="14" />
-          <folding>
-            <element signature="e#10467#10514#0" expanded="false" />
-            <element signature="e#10763#10797#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/inc/CESUT.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="14" column="19" selection-start-line="14" selection-start-column="19" selection-end-line="14" selection-end-column="19" />
           <folding />
         </state>
       </provider>
@@ -692,7 +665,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="87" column="45" selection-start-line="87" selection-start-column="45" selection-end-line="87" selection-end-column="45" />
           <folding>
-            <element signature="e#2688#3102#0" expanded="true" />
+            <element signature="e#2688#3102#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -702,8 +675,8 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="996" column="18" selection-start-line="996" selection-start-column="18" selection-end-line="996" selection-end-column="18" />
           <folding>
-            <element signature="e#32859#33170#0" expanded="true" />
-            <element signature="e#44502#44684#0" expanded="true" />
+            <element signature="e#32859#33170#0" expanded="false" />
+            <element signature="e#44502#44684#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -720,7 +693,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="6" column="2" selection-start-line="6" selection-start-column="2" selection-end-line="6" selection-end-column="2" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -729,7 +701,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="1034" column="28" selection-start-line="1034" selection-start-column="28" selection-end-line="1034" selection-end-column="28" />
           <folding>
-            <element signature="e#39730#39835#0" expanded="true" />
+            <element signature="e#39730#39835#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -754,7 +726,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-4.498008">
           <caret line="475" column="22" selection-start-line="475" selection-start-column="22" selection-end-line="475" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -774,51 +745,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/inc/DBConnection.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="135" column="6" selection-start-line="135" selection-start-column="6" selection-end-line="135" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/CustomerPositionDB.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="53" column="85" selection-start-line="52" selection-start-column="4" selection-end-line="53" selection-end-column="85" />
-          <folding>
-            <element signature="e#417#477#0" expanded="true" />
-            <element signature="e#676#751#0" expanded="true" />
-            <element signature="e#833#915#0" expanded="true" />
-            <element signature="e#15981#16344#0" expanded="true" />
-            <element signature="e#19772#19822#0" expanded="true" />
-            <element signature="e#19945#20005#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/inc/TxnDBBase.h">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="14" column="14" selection-start-line="14" selection-start-column="14" selection-end-line="14" selection-end-column="14" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/EGenSimpleTest.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.6666666">
-          <caret line="3" column="29" selection-start-line="3" selection-start-column="29" selection-end-line="3" selection-end-column="29" />
-          <folding>
-            <element signature="e#1970#2110#0" expanded="true" />
-            <element signature="e#4046#4091#0" expanded="true" />
-            <element signature="e#11360#11390#0" expanded="true" />
-            <element signature="e#11519#11552#0" expanded="true" />
-            <element signature="e#11621#11660#0" expanded="true" />
-            <element signature="e#12066#12185#0" expanded="true" />
-            <element signature="e#12966#13037#0" expanded="true" />
-            <element signature="e#13157#13301#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -832,18 +763,122 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/inc/MiscConsts.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="74" column="16" selection-start-line="74" selection-start-column="16" selection-end-line="74" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/CustomerPositionDB.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="54" column="25" selection-start-line="54" selection-start-column="25" selection-end-line="54" selection-end-column="25" />
+          <folding>
+            <element signature="e#417#477#0" expanded="true" />
+            <element signature="e#676#751#0" expanded="true" />
+            <element signature="e#833#915#0" expanded="true" />
+            <element signature="e#15981#16344#0" expanded="true" />
+            <element signature="e#19772#19822#0" expanded="true" />
+            <element signature="e#19945#20005#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/inc/MEESUT.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="25" column="72" selection-start-line="25" selection-start-column="72" selection-end-line="25" selection-end-column="72" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/inc/CESUT.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="11" column="6" selection-start-line="11" selection-start-column="6" selection-end-line="11" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/CESUT.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.8888888">
+          <caret line="10" column="8" selection-start-line="10" selection-start-column="8" selection-end-line="10" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/inc/DMSUTInterface.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="49" column="6" selection-start-line="49" selection-start-column="6" selection-end-line="49" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/inc/DMSUT.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="20" column="4" selection-start-line="20" selection-start-column="4" selection-end-line="20" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/EGenSimpleTest.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-9.259259">
+          <caret line="350" column="25" selection-start-line="350" selection-start-column="25" selection-end-line="350" selection-end-column="25" />
+          <folding>
+            <element signature="e#2010#2150#0" expanded="true" />
+            <element signature="e#2256#2327#0" expanded="true" />
+            <element signature="e#3197#3288#0" expanded="true" />
+            <element signature="e#4183#4228#0" expanded="true" />
+            <element signature="e#4268#4315#0" expanded="true" />
+            <element signature="e#9104#9168#0" expanded="true" />
+            <element signature="e#11608#11638#0" expanded="true" />
+            <element signature="e#11660#11695#0" expanded="true" />
+            <element signature="e#11718#11749#0" expanded="true" />
+            <element signature="e#11767#11800#0" expanded="true" />
+            <element signature="e#11869#11908#0" expanded="true" />
+            <element signature="e#12314#12433#0" expanded="true" />
+            <element signature="e#13214#13285#0" expanded="true" />
+            <element signature="e#13405#13549#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MEESUT.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-8.703704">
+          <caret line="40" column="9" selection-start-line="40" selection-start-column="9" selection-end-line="40" selection-end-column="9" />
+          <folding>
+            <element signature="e#5565#5599#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/inc/DBConnection.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="147" column="73" selection-start-line="147" selection-start-column="73" selection-end-line="147" selection-end-column="73" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/DBConnection.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.81545067">
-          <caret line="56" column="66" selection-start-line="56" selection-start-column="66" selection-end-line="56" selection-end-column="66" />
+        <state vertical-scroll-proportion="0.5809129">
+          <caret line="68" column="39" selection-start-line="68" selection-start-column="39" selection-end-line="68" selection-end-column="39" />
           <folding>
-            <element signature="e#289#332#0" expanded="true" />
-            <element signature="e#1037#1192#0" expanded="true" />
-            <element signature="e#2177#63164#0" expanded="true" />
-            <element signature="e#63240#63284#0" expanded="true" />
-            <element signature="e#63316#63744#0" expanded="true" />
-            <element signature="e#66135#66158#0" expanded="true" />
-            <element signature="e#66199#66231#0" expanded="true" />
+            <element signature="e#309#352#0" expanded="true" />
+            <element signature="e#1057#1212#0" expanded="true" />
+            <element signature="e#2867#63854#0" expanded="true" />
+            <element signature="e#63930#63974#0" expanded="true" />
+            <element signature="e#64006#64434#0" expanded="true" />
+            <element signature="e#66825#66848#0" expanded="true" />
+            <element signature="e#66889#66921#0" expanded="true" />
           </folding>
         </state>
       </provider>

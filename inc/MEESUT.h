@@ -16,13 +16,14 @@ class CMEESUT : public CMEESUTInterface
     char m_szDBName[iMaxDBName];
     char m_szDBUser[iMaxDBName];
     char m_szDBPass[iMaxDBName];
+	char m_szSName[iMaxSchemaname];
 
  public:
     unsigned int m_CountTradeResult[4];
     unsigned int m_CountMarketFeed[4];
 
     CMEESUT(const char *szHost, const char *szDBName,
-	    const char *szDBUser, const char *szDBPass,
+	    const char *szDBUser, const char *szDBPass, const char *szSName,
 	    INT32 InitialThreads, INT32 MaxThreads);
     ~CMEESUT();
 

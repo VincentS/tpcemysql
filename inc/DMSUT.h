@@ -19,7 +19,7 @@ class CDMSUT : public CDMSUTInterface
     unsigned int m_CountDataMaintenance[4];
 
     CDMSUT(const char *szHost, const char *szDBName,
-	   const char *szDBUser, const char *szDBPass);
+	   const char *szDBUser, const char *szDBPass,const char *szSName);
     ~CDMSUT();
 
     virtual bool DataMaintenance( PDataMaintenanceTxnInput pTxnInput );

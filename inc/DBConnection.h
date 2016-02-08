@@ -145,7 +145,7 @@ public:
     SQLHSTMT                *m_pPrepared;
 
     CDBConnection(const char *szHost, const char *szDBName,
-		  const char *szDBUser, const char *szDBPass, int szPrepareType);
+		  const char *szDBUser, const char *szDBPass,const char *szSName, int szPrepareType);
     ~CDBConnection();
 
     void BeginTxn();

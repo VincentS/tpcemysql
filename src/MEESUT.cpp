@@ -26,6 +26,7 @@ char MEESUT_szHost[iMaxHostname];
 char MEESUT_szDBName[iMaxDBName];
 char MEESUT_szDBUser[iMaxDBName];
 char MEESUT_szDBPass[iMaxDBName];
+char MEESUT_szSName[iMaxSchemaname];
 
 CMutex MEESUT_Lock;
 
@@ -38,13 +39,14 @@ list<PThreadRequest> MEEThreadPool;
 void* MEEAsyncThread(void* data);
 
 CMEESUT::CMEESUT(const char *szHost, const char *szDBName,
-		 const char *szDBUser, const char *szDBPass,
+		 const char *szDBUser, const char *szDBPass,const char *szSName,
 		 INT32 InitialThreads, INT32 MaxThreads)
 {
     strncpy(m_szHost, szHost, iMaxHostname);
     strncpy(m_szDBName, szDBName, iMaxDBName);
     strncpy(m_szDBUser, szDBUser, iMaxDBName);
     strncpy(m_szDBPass, szDBPass, iMaxDBName);
+	strncpy(m_szSName, szSName, iMaxSchemaname);
 
     for(int i=0; i<4; i++)
     {
@@ -64,6 +66,7 @@ CMEESUT::CMEESUT(const char *szHost, const char *szDBName,
 	strncpy(MEESUT_szDBName, szDBName, iMaxDBName);
 	strncpy(MEESUT_szDBUser, szDBUser, iMaxDBName);
 	strncpy(MEESUT_szDBPass, szDBPass, iMaxDBName);
+	strncpy(MEESUT_szSName, szSName, iMaxSchemaname);
 
 	MEESUT_CountTradeResult = m_CountTradeResult;
 	MEESUT_CountMarketFeed = m_CountMarketFeed;
@@ -169,7 +172,7 @@ void* MEEAsyncThread(void* data)
     try
     {
 	pDBConn = new CDBConnection(MEESUT_szHost, MEESUT_szDBName,
-				    MEESUT_szDBUser, MEESUT_szDBPass, 2);
+				    MEESUT_szDBUser, MEESUT_szDBPass,MEESUT_szSName, 2);
     }
     catch (const CODBCERR* e)
     {

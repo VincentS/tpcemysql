@@ -26,7 +26,7 @@ class CCESUT : public CCESUTInterface
     unsigned int m_CountTradeUpdate[4];
 
     CCESUT(const char *szHost, const char *szDBName,
-	   const char *szDBUser, const char *szDBPass);
+	   const char *szDBUser, const char *szDBPass, const char* szSName);
     ~CCESUT();
 
     virtual bool BrokerVolume( PBrokerVolumeTxnInput pTxnInput );
