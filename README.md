@@ -40,15 +40,9 @@ servernode = <IP of HANA Instance>:3<Instance Number>15
 
 Usage
 =====
-Create Tables in SAP HANA
--------------------------
-Before you execute the SQL Scripts in the directory `scripts/hana` to create the tables / foreign keys / indicies
-of the TPC-E benchmark you have to adjust the name of the schema to your database. Then you can execute the SQL scripts.
-
 Generate Test Data 
 ----------------------------------------
-To generate Test Data you have to execute EGenLoader in the bin directory supplying the path to the `flat_in` and `flat_out` directory.
-You can adjust the generator by supplying additional arguments to control the size of the generated dataset. 
+First you have to generate Test Data using `EGenLoader` in the bin directory supplying the path to the `flat_in` and `flat_out` directory. You can adjust the generator by supplying additional arguments to control the size of the generated dataset. 
 
 Example:
 ```
@@ -57,23 +51,27 @@ Example:
 
 After successfull generation of the benchmark data the generated data is located in the `flat_out` directory.
 
+Prepare Database for Loading of the Flat Files
+---------------------------------------------
+First you have to create the tbales for the TPC-E like benchmark by executing the SQL script `1_create_table.sql` located in the directory `scripts/<your_database>`.
+
 Load Flatfiles into SAP HANA with hdbsql
 ----------------------------------------
+
+Before you execute can import the generated flat files you have to adjust the SQL script in the directory `scripts/<your_database>` you have to adjust the name of the schema and paths to the flat files in the file `2_load-data.sql` for the database you target.
+
 We use the hdbsql command line tool supplied with the HANA ODBC driver to load the generated data into the SAP HANA database.
-Before you can load the data into your database you have to adjust the schema name in the `scripts/hana/import_script` SQL file
-and the path to the flat files accordingly.
-
-Example:
-```
-SET SCHEMA <YOUR_SCHEMA_NAME>;
-```
-
-Now you can load the flatfiles into the SAP HANA database by executing following command:
+We load the flatfiles into the SAP HANA database by executing following command:
 ```
 <path_to_hdbsql_executable>/hdbsql -n <IP_HANA_INSTANCE>:3<INSTANCE_ID>15 -u <USERNAME> -p <PASSWORD> -I <PATH_TO_IMPORT_SCRIPT>/hana_csv_import.sql -c ';'
 ```
 
 **Please confirm that the User used for the import has the user rights to IMPORT / INSERT data into the SCHEMA/TABLE!**
+
+Create FK / Indicies / ... in Database
+-----------------------------------------
+After successfully importing the generated falt_files you have to execute the remaining SQL scripts (3-n) in ascending order.
+
 
 Execute TPC-E like Benchmark
 -----------------------------
