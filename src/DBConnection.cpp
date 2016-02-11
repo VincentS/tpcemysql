@@ -434,8 +434,10 @@ CDBConnection::CDBConnection(const char *szHost, const char *szDBName,
 
 	//TLF3_3
 	rc = SQLPrepare(m_pPrepared[CESUT_STMT_TLF3_3],
-#if defined(MYSQL_ODBC) || defined(HANA_ODBC)
+#ifdef MYSQL_ODBC
 			(SQLCHAR*)"SELECT ct_amt, DATE_FORMAT(ct_dts, '%Y-%m-%d %H:%i:%s.%f'), ct_name FROM cash_transaction WHERE ct_t_id = ?",
+#elif HANA_ODBC
+			(SQLCHAR*)"SELECT ct_amt, TO_VARCHAR(ct_dts, 'YYYY-MM-DD HH24:MI:SS.FF6'), ct_name FROM cash_transaction WHERE ct_t_id = ?",
 #elif PGSQL_ODBC
 			(SQLCHAR*)"SELECT ct_amt, TO_CHAR(ct_dts, 'YYYY-MM-DD HH24:MI:SS.US'), ct_name FROM cash_transaction WHERE ct_t_id = ?",
 #elif ORACLE_ODBC
