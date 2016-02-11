@@ -1027,7 +1027,7 @@ void CTradeOrderDB::DoTradeOrderFrame4(const TTradeOrderFrame4Input *pIn,
     //* get_new_trade_id ( pOut->trade_id ) *
     //***************************************
 
-#if defined(MYSQL_ODBC) || defined(HANA_ODBC)
+#ifdef MYSQL_ODBC
     /* UPDATE seq_trade_id SET id=LAST_INSERT_ID(id+1) */
     stmt = m_Stmt;
     rc = SQLExecDirect(stmt, (SQLCHAR*)"UPDATE seq_trade_id SET id=LAST_INSERT_ID(id+1)", SQL_NTS);
@@ -1037,9 +1037,11 @@ void CTradeOrderDB::DoTradeOrderFrame4(const TTradeOrderFrame4Input *pIn,
 #endif
 
     stmt = m_Stmt;
-#if defined(MYSQL_ODBC) || defined(HANA_ODBC)
+#ifdef MYSQL_ODBC
     /* SELECT LAST_INSERT_ID() */
     rc = SQLExecDirect(stmt, (SQLCHAR*)"SELECT LAST_INSERT_ID()", SQL_NTS);
+#elif HANA_ODBC
+	rc = SQLExecDirect(stmt, (SQLCHAR*)"SELECT seq.NEXTVAL FROM DUMMY", SQL_NTS);
 #elif PGSQL_ODBC
     rc = SQLExecDirect(stmt, (SQLCHAR*)"SELECT NEXTVAL('seq_trade_id')", SQL_NTS);
 #elif ORACLE_ODBC
