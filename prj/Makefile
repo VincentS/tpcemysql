@@ -43,7 +43,7 @@
 
 
 #Define for Linux SAP HANA (Nanodbc) use -DMySQL_ODBC for now to get corret queries (To be changed)
-CXX=g++
+CXX=clang++
 CCFLAGS=-g -O2 -Wall  -D__STDC_CONSTANT_MACROS -D__STDC_FORMAT_MACROS -DHANA_ODBC -DUSE_PREPARE  -I/usr/local/Cellar/unixodbc/2.3.2_1/include
 LDFLAGS=-g -O2 -Wall   -L/usr/local/Cellar/unixodbc/2.3.2_1/lib
 LIBS=-lpthread -lodbc

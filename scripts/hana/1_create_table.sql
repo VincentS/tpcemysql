@@ -2,7 +2,7 @@
 
 
 DROP TABLE account_permission CASCADE;
-CREATE TABLE account_permission (
+CREATE COLUMN TABLE account_permission (
   ap_ca_id BIGINT NOT NULL,
   ap_acl VARCHAR(4) NOT NULL,
   ap_tax_id VARCHAR(20) NOT NULL,
@@ -12,7 +12,7 @@ CREATE TABLE account_permission (
 );
 
 DROP TABLE customer CASCADE;
-CREATE TABLE customer (
+CREATE COLUMN TABLE customer (
   c_id BIGINT NOT NULL,
   c_tax_id VARCHAR(20) NOT NULL,
   c_st_id VARCHAR(4) NOT NULL,
@@ -41,7 +41,7 @@ CREATE TABLE customer (
 );
 
 DROP TABLE customer_account CASCADE;
-CREATE TABLE customer_account (
+CREATE COLUMN TABLE customer_account (
   ca_id BIGINT NOT NULL,
   ca_b_id BIGINT NOT NULL,
   ca_c_id BIGINT NOT NULL,
@@ -52,14 +52,14 @@ CREATE TABLE customer_account (
 );
 
 DROP TABLE customer_taxrate CASCADE;
-CREATE TABLE customer_taxrate (
+CREATE COLUMN TABLE customer_taxrate (
   cx_tx_id VARCHAR(4) NOT NULL,
   cx_c_id BIGINT NOT NULL,
   PRIMARY KEY (cx_c_id, cx_tx_id)
 );
 
 DROP TABLE holding CASCADE;
-CREATE TABLE holding (
+CREATE COLUMN TABLE holding (
   h_t_id BIGINT NOT NULL,
   h_ca_id BIGINT NOT NULL,
   h_s_symb VARCHAR(15) NOT NULL,
@@ -73,7 +73,7 @@ CREATE TABLE holding (
 
 
 DROP TABLE holding_history CASCADE;
-CREATE TABLE holding_history (
+CREATE COLUMN TABLE holding_history (
   hh_h_t_id BIGINT NOT NULL,
   hh_t_id BIGINT NOT NULL,
   hh_before_qty INTEGER NOT NULL,
@@ -82,7 +82,7 @@ CREATE TABLE holding_history (
 );
 
 DROP TABLE holding_summary CASCADE;
-CREATE TABLE holding_summary (
+CREATE COLUMN TABLE holding_summary (
   hs_ca_id BIGINT NOT NULL,
   hs_s_symb VARCHAR(15) NOT NULL,
   hs_qty INTEGER NOT NULL,
@@ -90,14 +90,14 @@ CREATE TABLE holding_summary (
 );
 
 DROP TABLE watch_item CASCADE;
-CREATE TABLE watch_item (
+CREATE COLUMN TABLE watch_item (
   wi_wl_id BIGINT NOT NULL,
   wi_s_symb VARCHAR(15) NOT NULL,
   PRIMARY KEY (wi_wl_id, wi_s_symb)
 );
 
 DROP TABLE watch_list CASCADE;
-CREATE TABLE watch_list (
+CREATE COLUMN TABLE watch_list (
   wl_id BIGINT NOT NULL,
   wl_c_id BIGINT NOT NULL,
   PRIMARY KEY (wl_id)
@@ -105,7 +105,7 @@ CREATE TABLE watch_list (
 
 
 DROP TABLE broker CASCADE;
-CREATE TABLE broker (
+CREATE COLUMN TABLE broker (
   b_id BIGINT NOT NULL,
   b_st_id VARCHAR(4) NOT NULL,
   b_name VARCHAR(49) NOT NULL,
@@ -115,7 +115,7 @@ CREATE TABLE broker (
 );
 
 DROP TABLE cash_transaction CASCADE;
-CREATE TABLE cash_transaction (
+CREATE COLUMN TABLE cash_transaction (
   ct_t_id BIGINT NOT NULL,
   ct_dts TIMESTAMP NOT NULL,
   ct_amt DECIMAL(10,2) NOT NULL,
@@ -124,7 +124,7 @@ CREATE TABLE cash_transaction (
 );
 
 DROP TABLE charge CASCADE;
-CREATE TABLE charge (
+CREATE COLUMN TABLE charge (
   ch_tt_id VARCHAR(3) NOT NULL,
   ch_c_tier SMALLINT NOT NULL,
   ch_chrg DECIMAL(10,2) NOT NULL,
@@ -135,7 +135,7 @@ CREATE TABLE charge (
 
 
 DROP TABLE commission_rate CASCADE;
-CREATE TABLE commission_rate (
+CREATE COLUMN TABLE commission_rate (
   cr_c_tier SMALLINT NOT NULL,
   cr_tt_id VARCHAR(3) NOT NULL,
   cr_ex_id VARCHAR(6) NOT NULL,
@@ -151,7 +151,7 @@ CREATE TABLE commission_rate (
 
 
 DROP TABLE settlement CASCADE;
-CREATE TABLE settlement (
+CREATE COLUMN TABLE settlement (
   se_t_id BIGINT NOT NULL,
   se_cash_type VARCHAR(40) NOT NULL,
   se_cash_due_date DATE NOT NULL,
@@ -161,7 +161,7 @@ CREATE TABLE settlement (
 
 
 DROP TABLE trade CASCADE;
-CREATE TABLE trade (
+CREATE COLUMN TABLE trade (
   t_id BIGINT NOT NULL,
   t_dts TIMESTAMP NOT NULL,
   t_st_id VARCHAR(4) NOT NULL,
@@ -189,7 +189,7 @@ CREATE TABLE trade (
 
 
 DROP TABLE trade_history CASCADE;
-CREATE TABLE trade_history (
+CREATE COLUMN TABLE trade_history (
   th_t_id BIGINT NOT NULL,
   th_dts TIMESTAMP NOT NULL,
   th_st_id VARCHAR(4) NOT NULL,
@@ -197,7 +197,7 @@ CREATE TABLE trade_history (
 );
 
 DROP TABLE trade_request CASCADE;
-CREATE TABLE trade_request (
+CREATE COLUMN TABLE trade_request (
   tr_t_id BIGINT NOT NULL,
   tr_tt_id VARCHAR(3) NOT NULL,
   tr_s_symb VARCHAR(15) NOT NULL,
@@ -211,7 +211,7 @@ CREATE TABLE trade_request (
 -- tr_bid_price DECIMAL(8,2) NOT NULL CHECK (tr_bid_price > 0),
 
 DROP TABLE trade_type CASCADE;
-CREATE TABLE trade_type (
+CREATE COLUMN TABLE trade_type (
   tt_id VARCHAR(3) NOT NULL,
   tt_name VARCHAR(12) NOT NULL,
   tt_is_sell TINYINT NOT NULL,
@@ -221,7 +221,7 @@ CREATE TABLE trade_type (
 
 
 DROP TABLE company CASCADE;
-CREATE TABLE company (
+CREATE COLUMN TABLE company (
   co_id BIGINT NOT NULL,
   co_st_id VARCHAR(4) NOT NULL,
   co_name VARCHAR(60) NOT NULL,
@@ -235,7 +235,7 @@ CREATE TABLE company (
 );
 
 DROP TABLE company_competitor CASCADE;
-CREATE TABLE company_competitor (
+CREATE COLUMN TABLE company_competitor (
   cp_co_id BIGINT NOT NULL,
   cp_comp_co_id BIGINT NOT NULL,
   cp_in_id VARCHAR(2) NOT NULL,
@@ -243,7 +243,7 @@ CREATE TABLE company_competitor (
 );
 
 DROP TABLE daily_market CASCADE;
-CREATE TABLE daily_market (
+CREATE COLUMN TABLE daily_market (
   dm_date DATE NOT NULL,
   dm_s_symb VARCHAR(15) NOT NULL,
   dm_close DECIMAL(8,2) NOT NULL,
@@ -254,7 +254,7 @@ CREATE TABLE daily_market (
 );
 
 DROP TABLE exchange CASCADE;
-CREATE TABLE exchange (
+CREATE COLUMN TABLE exchange (
   ex_id VARCHAR(6) NOT NULL,
   ex_name VARCHAR(100) NOT NULL,
   ex_num_symb INTEGER NOT NULL,
@@ -266,7 +266,7 @@ CREATE TABLE exchange (
 );
 
 DROP TABLE financial CASCADE;
-CREATE TABLE financial (
+CREATE COLUMN TABLE financial (
   fi_co_id BIGINT NOT NULL,
   fi_year SMALLINT NOT NULL,
   fi_qtr SMALLINT NOT NULL,
@@ -285,7 +285,7 @@ CREATE TABLE financial (
 );
 
 DROP TABLE industry CASCADE;
-CREATE TABLE industry (
+CREATE COLUMN TABLE industry (
   in_id VARCHAR(2) NOT NULL,
   in_name VARCHAR(50) NOT NULL,
   in_sc_id VARCHAR(2) NOT NULL,
@@ -293,7 +293,7 @@ CREATE TABLE industry (
 );
 
 DROP TABLE last_trade CASCADE;
-CREATE TABLE last_trade (
+CREATE COLUMN TABLE last_trade (
   lt_s_symb VARCHAR(15) NOT NULL,
   lt_dts TIMESTAMP NOT NULL,
   lt_price DECIMAL(8,2) NOT NULL,
@@ -303,11 +303,11 @@ CREATE TABLE last_trade (
 );
 
 DROP TABLE news_item CASCADE;
-CREATE TABLE news_item (
+CREATE COLUMN TABLE news_item (
   ni_id BIGINT NOT NULL,
   ni_headline VARCHAR(80) NOT NULL,
   ni_summary VARCHAR(255) NOT NULL,
-  ni_item BLOB NOT NULL,
+  ni_item CLOB NOT NULL,
   ni_dts TIMESTAMP NOT NULL,
   ni_source VARCHAR(30) NOT NULL,
   ni_author VARCHAR(30),
@@ -315,21 +315,21 @@ CREATE TABLE news_item (
 );
 
 DROP TABLE news_xref CASCADE;
-CREATE TABLE news_xref (
+CREATE COLUMN TABLE news_xref (
   nx_ni_id BIGINT NOT NULL,
   nx_co_id BIGINT NOT NULL,
   PRIMARY KEY (nx_co_id, nx_ni_id)
 );
 
 DROP TABLE sector CASCADE;
-CREATE TABLE sector (
+CREATE COLUMN TABLE sector (
   sc_id VARCHAR(2) NOT NULL,
   sc_name VARCHAR(30) NOT NULL,
   PRIMARY KEY (sc_id)
 );
 
 DROP TABLE security CASCADE;
-CREATE TABLE security (
+CREATE COLUMN TABLE security (
   s_symb VARCHAR(15) NOT NULL,
   s_issue VARCHAR(6) NOT NULL,
   s_st_id VARCHAR(4) NOT NULL,
@@ -351,7 +351,7 @@ CREATE TABLE security (
 
 
 DROP TABLE address CASCADE;
-CREATE TABLE address (
+CREATE COLUMN TABLE address (
   ad_id BIGINT NOT NULL,
   ad_line1 VARCHAR(80),
   ad_line2 VARCHAR(80),
@@ -361,14 +361,14 @@ CREATE TABLE address (
 );
 
 DROP TABLE status_type CASCADE;
-CREATE TABLE status_type (
+CREATE COLUMN TABLE status_type (
   st_id VARCHAR(4) NOT NULL,
   st_name VARCHAR(10) NOT NULL,
   PRIMARY KEY (st_id)
 );
 
 DROP TABLE taxrate CASCADE;
-CREATE TABLE taxrate (
+CREATE COLUMN TABLE taxrate (
   tx_id VARCHAR(4) NOT NULL,
   tx_name VARCHAR(50) NOT NULL,
   tx_rate DECIMAL(6,5) NOT NULL,
@@ -378,7 +378,7 @@ CREATE TABLE taxrate (
 --   tx_rate DECIMAL(6,5) NOT NULL CHECK (tx_rate >= 0)
 
 DROP TABLE zip_code CASCADE;
-CREATE TABLE zip_code (
+CREATE COLUMN TABLE zip_code (
   zc_code VARCHAR(12) NOT NULL,
   zc_town VARCHAR(80) NOT NULL,
   zc_div VARCHAR(80) NOT NULL,

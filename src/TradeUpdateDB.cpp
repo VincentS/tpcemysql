@@ -235,8 +235,10 @@ void CTradeUpdateDB::DoTradeUpdateFrame1(const TTradeUpdateFrame1Input *pIn,
 #else // !USE_PREPARE
 	stmt = m_Stmt;
 	ostringstream osTUF1_4;
-#if defined(MYSQL_ODBC) || defined(HANA_ODBC)
+#ifdef MYSQL_ODBC
 	osTUF1_4 << "SELECT se_amt, DATE_FORMAT(se_cash_due_date, '%Y-%m-%d'), se_cash_type FROM settlement WHERE se_t_id = " <<
+#elif HANA_ODBC
+	osTUF1_4 << "SELECT se_amt, TO_VARCHAR(se_cash_due_date, 'YYYY-MM-DD'), se_cash_type FROM settlement WHERE se_t_id = " <<
 #elif PGSQL_ODBC
 	osTUF1_4 << "SELECT se_amt, TO_CHAR(se_cash_due_date, 'YYYY-MM-DD'), se_cash_type FROM settlement WHERE se_t_id = " <<
 #elif ORACLE_ODBC
@@ -294,8 +296,10 @@ void CTradeUpdateDB::DoTradeUpdateFrame1(const TTradeUpdateFrame1Input *pIn,
 #else // !USE_PREPARE
 	    stmt = m_Stmt;
 	    ostringstream osTUF1_5;
-#if defined(MYSQL_ODBC) || defined(HANA_ODBC)
+#ifdef MYSQL_ODBC
 	    osTUF1_5 << "SELECT ct_amt, DATE_FORMAT(ct_dts, '%Y-%m-%d %H:%i:%s.%f'), ct_name FROM cash_transaction WHERE ct_t_id = " <<
+#elif HANA_ODBC
+        osTUF1_5 << "SELECT ct_amt, TO_VARCHAR(ct_dts, 'YYYY-MM-DD HH24:MI:SS.FF6'), ct_name FROM cash_transaction WHERE ct_t_id = " <<
 #elif PGSQL_ODBC
 	    osTUF1_5 << "SELECT ct_amt, TO_CHAR(ct_dts, 'YYYY-MM-DD HH24:MI:SS.US'), ct_name FROM cash_transaction WHERE ct_t_id = " <<
 #elif ORACLE_ODBC
@@ -354,8 +358,11 @@ void CTradeUpdateDB::DoTradeUpdateFrame1(const TTradeUpdateFrame1Input *pIn,
 #else // !USE_PREPARE
 	stmt = m_Stmt;
 	ostringstream osTUF1_6;
-#if defined(MYSQL_ODBC) || defined(HANA_ODBC)
+#ifdef MYSQL_ODBC
 	osTUF1_6 << "SELECT DATE_FORMAT(th_dts, '%Y-%m-%d %H:%i:%s.%f'), th_st_id FROM trade_history WHERE th_t_id = " <<
+            pIn->trade_id[i] << " ORDER BY th_dts LIMIT 3";
+#elif HANA_ODBC
+	osTUF1_6 << "SELECT TO_VARCHAR(th_dts, 'YYYY-MM-DD HH24:MI:SS.FF6'), th_st_id FROM trade_history WHERE th_t_id = " <<
             pIn->trade_id[i] << " ORDER BY th_dts LIMIT 3";
 #elif PGSQL_ODBC
 	osTUF1_6 << "SELECT TO_CHAR(th_dts, 'YYYY-MM-DD HH24:MI:SS.US'), th_st_id FROM trade_history WHERE th_t_id = " <<
@@ -690,8 +697,10 @@ void CTradeUpdateDB::DoTradeUpdateFrame2(const TTradeUpdateFrame2Input *pIn,
 #else // !USE_PREPARE
 	stmt = m_Stmt;
 	ostringstream osTUF2_4;
-#if defined(MYSQL_ODBC) || defined(HANA_ODBC)
+#ifdef MYSQL_ODBC
 	osTUF2_4 << "SELECT se_amt, DATE_FORMAT(se_cash_due_date, '%Y-%m-%d'), se_cash_type FROM settlement WHERE se_t_id = " <<
+#elif HANA_ODBC
+	osTUF2_4 << "SELECT se_amt, TO_VARCHAR(se_cash_due_date, 'YYYY-MM-DD'), se_cash_type FROM settlement WHERE se_t_id = " <<
 #elif PGSQL_ODBC
 	osTUF2_4 << "SELECT se_amt, TO_CHAR(se_cash_due_date, 'YYYY-MM-DD'), se_cash_type FROM settlement WHERE se_t_id = " <<
 #elif ORACLE_ODBC
@@ -749,8 +758,10 @@ void CTradeUpdateDB::DoTradeUpdateFrame2(const TTradeUpdateFrame2Input *pIn,
 #else // !USE_PREPARE
 	    stmt = m_Stmt;
 	    ostringstream osTUF2_5;
-#if defined(MYSQL_ODBC) || defined(HANA_ODBC)
+#ifdef MYSQL_ODBC
 	    osTUF2_5 << "SELECT ct_amt, DATE_FORMAT(ct_dts, '%Y-%m-%d %H:%i:%s.%f'), ct_name FROM cash_transaction WHERE ct_t_id = " <<
+#elif HANA_ODBC
+        osTUF2_5 << "SELECT ct_amt, TO_VARCHAR(ct_dts, 'YYYY-MM-DD HH24:MI:SS.FF6'), ct_name FROM cash_transaction WHERE ct_t_id = " <<
 #elif PGSQL_ODBC
 	    osTUF2_5 << "SELECT ct_amt, TO_CHAR(ct_dts, 'YYYY-MM-DD HH24:MI:SS.US'), ct_name FROM cash_transaction WHERE ct_t_id = " <<
 #elif ORACLE_ODBC
@@ -808,8 +819,11 @@ void CTradeUpdateDB::DoTradeUpdateFrame2(const TTradeUpdateFrame2Input *pIn,
 #else // !USE_PREPARE
 	stmt = m_Stmt;
 	ostringstream osTUF2_6;
-#if defined(MYSQL_ODBC) || defined(HANA_ODBC)
+#ifdef MYSQL_ODBC
 	osTUF2_6 << "SELECT DATE_FORMAT(th_dts, '%Y-%m-%d %H:%i:%s.%f'), th_st_id FROM trade_history WHERE th_t_id = " <<
+            pOut->trade_info[i].trade_id << " ORDER BY th_dts LIMIT 3";
+#elif HANA_ODBC
+    osTUF2_6 << "SELECT TO_VARCHAR(th_dts, 'YYYY-MM-DD HH24:MI:SS.FF6'), th_st_id FROM trade_history WHERE th_t_id = " <<
             pOut->trade_info[i].trade_id << " ORDER BY th_dts LIMIT 3";
 #elif PGSQL_ODBC
 	osTUF2_6 << "SELECT TO_CHAR(th_dts, 'YYYY-MM-DD HH24:MI:SS.US'), th_st_id FROM trade_history WHERE th_t_id = " <<
@@ -971,8 +985,14 @@ void CTradeUpdateDB::DoTradeUpdateFrame3(const TTradeUpdateFrame3Input *pIn,
 #else // !USE_PREPARE
     stmt = m_Stmt;
     ostringstream osTUF3_1;
-#if defined(MYSQL_ODBC) || defined(HANA_ODBC)
+#ifdef MYSQL_ODBC
     osTUF3_1 << "SELECT t_ca_id, t_exec_name, t_is_cash, t_trade_price, t_qty, s_name, DATE_FORMAT(t_dts, '%Y-%m-%d %H:%i:%s.%f'), t_id, t_tt_id, tt_name FROM trade, trade_type FORCE INDEX(PRIMARY), security WHERE t_s_symb = '" <<
+	pIn->symbol << "' AND t_dts >= '" <<
+	start_trade_dts << "' AND t_dts <= '" <<
+	end_trade_dts << "' AND tt_id = t_tt_id AND s_symb = t_s_symb ORDER BY t_dts ASC LIMIT " <<
+	pIn->max_trades;
+#elif HANA_ODBC
+    osTUF3_1 << "SELECT t_ca_id, t_exec_name, t_is_cash, t_trade_price, t_qty, s_name, TO_VARCHAR(t_dts, 'YYYY-MM-DD HH24:MI:SS.FF6'), t_id, t_tt_id, tt_name FROM trade, trade_type, security WHERE t_s_symb = '" <<
 	pIn->symbol << "' AND t_dts >= '" <<
 	start_trade_dts << "' AND t_dts <= '" <<
 	end_trade_dts << "' AND tt_id = t_tt_id AND s_symb = t_s_symb ORDER BY t_dts ASC LIMIT " <<
@@ -1098,8 +1118,10 @@ void CTradeUpdateDB::DoTradeUpdateFrame3(const TTradeUpdateFrame3Input *pIn,
 #else // !USE_PREPARE
 	stmt = m_Stmt;
 	ostringstream osTUF3_2;
-#if defined(MYSQL_ODBC) || defined(HANA_ODBC)
+#ifdef MYSQL_ODBC
 	osTUF3_2 << "SELECT se_amt, DATE_FORMAT(se_cash_due_date, '%Y-%m-%d'), se_cash_type FROM settlement WHERE se_t_id = " <<
+#elif HANA_ODBC
+    osTUF3_2 << "SELECT se_amt, TO_VARCHAR(se_cash_due_date, 'YYYY-MM-DD'), se_cash_type FROM settlement WHERE se_t_id = " <<
 #elif PGSQL_ODBC
 	osTUF3_2 << "SELECT se_amt, TO_CHAR(se_cash_due_date, 'YYYY-MM-DD'), se_cash_type FROM settlement WHERE se_t_id = " <<
 #elif ORACLE_ODBC
@@ -1248,8 +1270,10 @@ void CTradeUpdateDB::DoTradeUpdateFrame3(const TTradeUpdateFrame3Input *pIn,
 #else // !USE_PREPARE
 	    stmt = m_Stmt;
 	    ostringstream osTUF3_5;
-#if defined(MYSQL_ODBC) || defined(HANA_ODBC)
+#ifdef MYSQL_ODBC
 	    osTUF3_5 << "SELECT ct_amt, DATE_FORMAT(ct_dts, '%Y-%m-%d %H:%i:%s.%f'), ct_name FROM cash_transaction WHERE ct_t_id = " <<
+#elif HANA_ODBC
+        osTUF3_5 << "SELECT ct_amt, TO_VARCHAR(ct_dts, 'YYYY-MM-DD HH24:MI:SS.FF6'), ct_name FROM cash_transaction WHERE ct_t_id = " <<
 #elif PGSQL_ODBC
 	    osTUF3_5 << "SELECT ct_amt, TO_CHAR(ct_dts, 'YYYY-MM-DD HH24:MI:SS.US'), ct_name FROM cash_transaction WHERE ct_t_id = " <<
 #elif ORACLE_ODBC
@@ -1307,8 +1331,11 @@ void CTradeUpdateDB::DoTradeUpdateFrame3(const TTradeUpdateFrame3Input *pIn,
 #else // !USE_PREPARE
 	stmt = m_Stmt;
 	ostringstream osTUF3_6;
-#if defined(MYSQL_ODBC) || defined(HANA_ODBC)
+#ifdef MYSQL_ODBC
 	osTUF3_6 << "SELECT DATE_FORMAT(th_dts, '%Y-%m-%d %H:%i:%s.%f'), th_st_id FROM trade_history WHERE th_t_id = " <<
+            pOut->trade_info[i].trade_id << " ORDER BY th_dts ASC LIMIT 3";
+#elif HANA_ODBC
+    osTUF3_6 << "SELECT TO_VARCHAR(th_dts, 'YYYY-MM-DD HH24:MI:SS.FF6'), th_st_id FROM trade_history WHERE th_t_id = " <<
             pOut->trade_info[i].trade_id << " ORDER BY th_dts ASC LIMIT 3";
 #elif PGSQL_ODBC
 	osTUF3_6 << "SELECT TO_CHAR(th_dts, 'YYYY-MM-DD HH24:MI:SS.US'), th_st_id FROM trade_history WHERE th_t_id = " <<

@@ -122,8 +122,10 @@ CDBConnection::CDBConnection(const char *szHost, const char *szDBName,
 
 	//CPF1_2
 	rc = SQLPrepare(m_pPrepared[CESUT_STMT_CPF1_2],
-#if defined(MYSQL_ODBC) || defined(HANA_ODBC)
+#if MYSQL_ODBC
 			(SQLCHAR*)"SELECT c_st_id, c_l_name, c_f_name, c_m_name, c_gndr, c_tier, DATE_FORMAT(c_dob,'%Y-%m-%d'), c_ad_id, c_ctry_1, c_area_1, c_local_1, c_ext_1, c_ctry_2, c_area_2, c_local_2, c_ext_2, c_ctry_3, c_area_3, c_local_3, c_ext_3, c_email_1, c_email_2 FROM customer WHERE c_id = ?",
+#elif HANA_ODBC
+			(SQLCHAR*)"SELECT c_st_id, c_l_name, c_f_name, c_m_name, c_gndr, c_tier, TO_VARCHAR(c_dob,'YYYY-MM-DD'), c_ad_id, c_ctry_1, c_area_1, c_local_1, c_ext_1, c_ctry_2, c_area_2, c_local_2, c_ext_2, c_ctry_3, c_area_3, c_local_3, c_ext_3, c_email_1, c_email_2 FROM customer WHERE c_id = ?",
 #elif PGSQL_ODBC
 			(SQLCHAR*)"SELECT c_st_id, c_l_name, c_f_name, c_m_name, c_gndr, c_tier, TO_CHAR(c_dob,'YYYY-MM-DD'), c_ad_id, c_ctry_1, c_area_1, c_local_1, c_ext_1, c_ctry_2, c_area_2, c_local_2, c_ext_2, c_ctry_3, c_area_3, c_local_3, c_ext_3, c_email_1, c_email_2 FROM customer WHERE c_id = ?",
 #elif ORACLE_ODBC
@@ -146,8 +148,10 @@ CDBConnection::CDBConnection(const char *szHost, const char *szDBName,
 
 	//CPF2_1
 	rc = SQLPrepare(m_pPrepared[CESUT_STMT_CPF2_1],
-#if defined(MYSQL_ODBC) || defined(HANA_ODBC)
+#if MYSQL_ODBC
 			(SQLCHAR*)"SELECT t_id, t_s_symb, t_qty, st_name, DATE_FORMAT(th_dts,'%Y-%m-%d %H:%i:%s.%f') FROM (SELECT t_id AS id FROM trade WHERE t_ca_id = ? ORDER BY t_dts DESC LIMIT 10) AS t, trade, trade_history, status_type FORCE INDEX(PRIMARY) WHERE t_id = id AND th_t_id = t_id AND st_id = th_st_id ORDER BY th_dts DESC LIMIT ?",
+#elif HANA_ODBC
+			(SQLCHAR*)"SELECT t_id, t_s_symb, t_qty, st_name, TO_VARCHAR(th_dts,'YYYY-MM-DD HH24:MI:SS.FF6') FROM (SELECT t_id AS id FROM trade WHERE t_ca_id = ? ORDER BY t_dts DESC LIMIT 10) AS t, trade, trade_history, status_type WHERE t_id = id AND th_t_id = t_id AND st_id = th_st_id ORDER BY th_dts DESC LIMIT ?",
 #elif PGSQL_ODBC
 			(SQLCHAR*)"SELECT t_id, t_s_symb, t_qty, st_name, TO_CHAR(th_dts,'YYYY-MM-DD HH24:MI:SS.US') FROM (SELECT t_id AS id FROM trade WHERE t_ca_id = ? ORDER BY t_dts DESC LIMIT 10) AS t, trade, trade_history, status_type WHERE t_id = id AND th_t_id = t_id AND st_id = th_st_id ORDER BY th_dts DESC LIMIT ?",
 #elif ORACLE_ODBC
@@ -194,8 +198,10 @@ CDBConnection::CDBConnection(const char *szHost, const char *szDBName,
 	//===SecurityDetail================
 	//SDF1_1
 	rc = SQLPrepare(m_pPrepared[CESUT_STMT_SDF1_1],
-#if defined(MYSQL_ODBC) || defined(HANA_ODBC)
+#ifdef MYSQL_ODBC
 			(SQLCHAR*)"SELECT s_name, co_id, co_name, co_sp_rate, co_ceo, co_desc, DATE_FORMAT(co_open_date,'%Y-%m-%d'), co_st_id, ca.ad_line1, ca.ad_line2, zca.zc_town, zca.zc_div, ca.ad_zc_code, ca.ad_ctry, s_num_out, DATE_FORMAT(s_start_date,'%Y-%m-%d'), DATE_FORMAT(s_exch_date,'%Y-%m-%d'), s_pe, s_52wk_high, DATE_FORMAT(s_52wk_high_date,'%Y-%m-%d'), s_52wk_low, DATE_FORMAT(s_52wk_low_date,'%Y-%m-%d'), s_dividend, s_yield, zea.zc_div, ea.ad_ctry, ea.ad_line1, ea.ad_line2, zea.zc_town, ea.ad_zc_code, ex_close, ex_desc, ex_name, ex_num_symb, ex_open FROM security, company, address ca, address ea, zip_code zca, zip_code zea, exchange WHERE s_symb = ? AND co_id = s_co_id AND ca.ad_id = co_ad_id AND ea.ad_id = ex_ad_id AND ex_id = s_ex_id AND ca.ad_zc_code = zca.zc_code AND ea.ad_zc_code = zea.zc_code",
+#elif HANA_ODBC
+			(SQLCHAR*)"SELECT s_name, co_id, co_name, co_sp_rate, co_ceo, co_desc, TO_VARCHAR(co_open_date,'YYYY-MM-DD'), co_st_id, ca.ad_line1, ca.ad_line2, zca.zc_town, zca.zc_div, ca.ad_zc_code, ca.ad_ctry, s_num_out, TO_VARCHAR(s_start_date,'YYYY-MM-DD'), TO_VARCHAR(s_exch_date,'YYYY-MM-DD'), s_pe, s_52wk_high, TO_VARCHAR(s_52wk_high_date,'YYYY-MM-DD'), s_52wk_low, TO_VARCHAR(s_52wk_low_date,'YYYY-MM-DD'), s_dividend, s_yield, zea.zc_div, ea.ad_ctry, ea.ad_line1, ea.ad_line2, zea.zc_town, ea.ad_zc_code, ex_close, ex_desc, ex_name, ex_num_symb, ex_open FROM security, company, address ca, address ea, zip_code zca, zip_code zea, exchange WHERE s_symb = ? AND co_id = s_co_id AND ca.ad_id = co_ad_id AND ea.ad_id = ex_ad_id AND ex_id = s_ex_id AND ca.ad_zc_code = zca.zc_code AND ea.ad_zc_code = zea.zc_code",
 #elif PGSQL_ODBC
 			(SQLCHAR*)"SELECT s_name, co_id, co_name, co_sp_rate, co_ceo, co_desc, TO_CHAR(co_open_date,'YYYY-MM-DD'), co_st_id, ca.ad_line1, ca.ad_line2, zca.zc_town, zca.zc_div, ca.ad_zc_code, ca.ad_ctry, s_num_out, TO_CHAR(s_start_date,'YYYY-MM-DD'), TO_CHAR(s_exch_date,'YYYY-MM-DD'), s_pe, s_52wk_high, TO_CHAR(s_52wk_high_date,'YYYY-MM-DD'), s_52wk_low, TO_CHAR(s_52wk_low_date,'YYYY-MM-DD'), s_dividend, s_yield, zea.zc_div, ea.ad_ctry, ea.ad_line1, ea.ad_line2, zea.zc_town, ea.ad_zc_code, ex_close, ex_desc, ex_name, ex_num_symb, ex_open FROM security, company, address ca, address ea, zip_code zca, zip_code zea, exchange WHERE s_symb = ? AND co_id = s_co_id AND ca.ad_id = co_ad_id AND ea.ad_id = ex_ad_id AND ex_id = s_ex_id AND ca.ad_zc_code = zca.zc_code AND ea.ad_zc_code = zea.zc_code",
 #elif ORACLE_ODBC
@@ -218,8 +224,10 @@ CDBConnection::CDBConnection(const char *szHost, const char *szDBName,
 
 	//SDF1_3
 	rc = SQLPrepare(m_pPrepared[CESUT_STMT_SDF1_3],
-#if defined(MYSQL_ODBC) || defined(HANA_ODBC)
+#ifdef MYSQL_ODBC
 			(SQLCHAR*)"SELECT fi_year, fi_qtr, DATE_FORMAT(fi_qtr_start_date,'%Y-%m-%d'), fi_revenue, fi_net_earn, fi_basic_eps, fi_dilut_eps, fi_margin, fi_inventory, fi_assets, fi_liability, fi_out_basic, fi_out_dilut FROM financial WHERE fi_co_id = ? ORDER BY fi_year ASC, fi_qtr LIMIT ?",
+#elif HANA_ODBC
+			(SQLCHAR*)"SELECT fi_year, fi_qtr, TO_VARCHAR(fi_qtr_start_date,'YYYY-MM-DD'), fi_revenue, fi_net_earn, fi_basic_eps, fi_dilut_eps, fi_margin, fi_inventory, fi_assets, fi_liability, fi_out_basic, fi_out_dilut FROM financial WHERE fi_co_id = ? ORDER BY fi_year ASC, fi_qtr LIMIT ?",
 #elif PGSQL_ODBC
 			(SQLCHAR*)"SELECT fi_year, fi_qtr, TO_CHAR(fi_qtr_start_date,'YYYY-MM-DD'), fi_revenue, fi_net_earn, fi_basic_eps, fi_dilut_eps, fi_margin, fi_inventory, fi_assets, fi_liability, fi_out_basic, fi_out_dilut FROM financial WHERE fi_co_id = ? ORDER BY fi_year ASC, fi_qtr LIMIT ?",
 #elif ORACLE_ODBC
@@ -231,8 +239,10 @@ CDBConnection::CDBConnection(const char *szHost, const char *szDBName,
 
 	//SDF1_4
 	rc = SQLPrepare(m_pPrepared[CESUT_STMT_SDF1_4],
-#if defined(MYSQL_ODBC) || defined(HANA_ODBC)
+#ifdef MYSQL_ODBC
 			(SQLCHAR*)"SELECT DATE_FORMAT(dm_date,'%Y-%m-%d'), dm_close, dm_high, dm_low, dm_vol FROM daily_market WHERE dm_s_symb = ? AND dm_date >= ? ORDER BY dm_date ASC LIMIT ?",
+#elif HANA_ODBC
+			(SQLCHAR*)"SELECT TO_VARCHAR(dm_date,'YYYY-MM-DD'), dm_close, dm_high, dm_low, dm_vol FROM daily_market WHERE dm_s_symb = ? AND dm_date >= ? ORDER BY dm_date ASC LIMIT ?",
 #elif PGSQL_ODBC
 			(SQLCHAR*)"SELECT TO_CHAR(dm_date,'YYYY-MM-DD'), dm_close, dm_high, dm_low, dm_vol FROM daily_market WHERE dm_s_symb = ? AND dm_date >= ? ORDER BY dm_date ASC LIMIT ?",
 #elif ORACLE_ODBC
@@ -255,8 +265,10 @@ CDBConnection::CDBConnection(const char *szHost, const char *szDBName,
 
 	//SDF1_6
 	rc = SQLPrepare(m_pPrepared[CESUT_STMT_SDF1_6],
-#if defined(MYSQL_ODBC) || defined(HANA_ODBC)
+#ifdef MYSQL_ODBC
 			(SQLCHAR*)"SELECT ni_item, DATE_FORMAT(ni_dts, '%Y-%m-%d %H:%i:%s.%f'), ni_source, ni_author FROM news_xref, news_item WHERE  ni_id = nx_ni_id AND nx_co_id = ? LIMIT ?",
+#elif HANA_ODBC
+			(SQLCHAR*)"SELECT ni_item, TO_VARCHAR(ni_dts, 'YYYY-MM-DD HH24:MI:SS.FF6'), ni_source, ni_author FROM news_xref, news_item WHERE  ni_id = nx_ni_id AND nx_co_id = ? LIMIT ?",
 #elif PGSQL_ODBC
 			(SQLCHAR*)"SELECT ni_item, TO_CHAR(ni_dts, 'YYYY-MM-DD HH24:MI:SS.US'), ni_source, ni_author FROM news_xref, news_item WHERE  ni_id = nx_ni_id AND nx_co_id = ? LIMIT ?",
 #elif ORACLE_ODBC
@@ -268,8 +280,10 @@ CDBConnection::CDBConnection(const char *szHost, const char *szDBName,
 
 	//SDF1_7
 	rc = SQLPrepare(m_pPrepared[CESUT_STMT_SDF1_7],
-#if defined(MYSQL_ODBC) || defined(HANA_ODBC)
+#ifdef MYSQL_ODBC
 			(SQLCHAR*)"SELECT DATE_FORMAT(ni_dts, '%Y-%m-%d %H:%i:%s.%f'), ni_source, ni_author, ni_headline, ni_summary FROM news_xref, news_item WHERE ni_id = nx_ni_id AND nx_co_id = ? LIMIT ?",
+#elif HANA_ODBC
+			(SQLCHAR*)"SELECT TO_VARCHAR(ni_dts, 'YYYY-MM-DD HH24:MI:SS.FF6'), ni_source, ni_author, ni_headline, ni_summary FROM news_xref, news_item WHERE ni_id = nx_ni_id AND nx_co_id = ? LIMIT ?",
 #elif PGSQL_ODBC
 			(SQLCHAR*)"SELECT TO_CHAR(ni_dts, 'YYYY-MM-DD HH24:MI:SS.US'), ni_source, ni_author, ni_headline, ni_summary FROM news_xref, news_item WHERE ni_id = nx_ni_id AND nx_co_id = ? LIMIT ?",
 #elif ORACLE_ODBC
@@ -289,8 +303,10 @@ CDBConnection::CDBConnection(const char *szHost, const char *szDBName,
 
 	//TLF1_2
 	rc = SQLPrepare(m_pPrepared[CESUT_STMT_TLF1_2],
-#if defined(MYSQL_ODBC) || defined(HANA_ODBC)
+#ifdef MYSQL_ODBC
 			(SQLCHAR*)"SELECT se_amt, DATE_FORMAT(se_cash_due_date, '%Y-%m-%d'), se_cash_type FROM settlement WHERE se_t_id = ?",
+#elif HANA_ODBC
+			(SQLCHAR*)"SELECT se_amt, TO_VARCHAR(se_cash_due_date, 'YYYY-MM-DD'), se_cash_type FROM settlement WHERE se_t_id = ?",
 #elif PGSQL_ODBC
 			(SQLCHAR*)"SELECT se_amt, TO_CHAR(se_cash_due_date, 'YYYY-MM-DD'), se_cash_type FROM settlement WHERE se_t_id = ?",
 #elif ORACLE_ODBC
@@ -302,8 +318,10 @@ CDBConnection::CDBConnection(const char *szHost, const char *szDBName,
 
 	//TLF1_3
 	rc = SQLPrepare(m_pPrepared[CESUT_STMT_TLF1_3],
-#if defined(MYSQL_ODBC) || defined(HANA_ODBC)
+#ifdef MYSQL_ODBC
 			(SQLCHAR*)"SELECT ct_amt, DATE_FORMAT(ct_dts, '%Y-%m-%d %H:%i:%s.%f'), ct_name FROM cash_transaction WHERE ct_t_id = ?",
+#elif HANA_ODBC
+			(SQLCHAR*)"SELECT ct_amt, TO_VARCHAR(ct_dts, 'YYYY-MM-DD HH24:MI:SS.FF6'), ct_name FROM cash_transaction WHERE ct_t_id = ?",
 #elif PGSQL_ODBC
 			(SQLCHAR*)"SELECT ct_amt, TO_CHAR(ct_dts, 'YYYY-MM-DD HH24:MI:SS.US'), ct_name FROM cash_transaction WHERE ct_t_id = ?",
 #elif ORACLE_ODBC
@@ -315,8 +333,10 @@ CDBConnection::CDBConnection(const char *szHost, const char *szDBName,
 
 	//TLF1_4
 	rc = SQLPrepare(m_pPrepared[CESUT_STMT_TLF1_4],
-#if defined(MYSQL_ODBC) || defined(HANA_ODBC)
+#ifdef MYSQL_ODBC
 			(SQLCHAR*)"SELECT DATE_FORMAT(th_dts, '%Y-%m-%d %H:%i:%s.%f'), th_st_id FROM trade_history WHERE th_t_id = ? ORDER BY th_dts LIMIT 3",
+#elif HANA_ODBC
+    	    (SQLCHAR*)"SELECT TO_VARCHAR(th_dts, 'YYYY-MM-DD HH24:MI:SS.FF6'), th_st_id FROM trade_history WHERE th_t_id = ? ORDER BY th_dts LIMIT 3",
 #elif PGSQL_ODBC
 			(SQLCHAR*)"SELECT TO_CHAR(th_dts, 'YYYY-MM-DD HH24:MI:SS.US'), th_st_id FROM trade_history WHERE th_t_id = ? ORDER BY th_dts LIMIT 3",
 #elif ORACLE_ODBC
@@ -339,8 +359,10 @@ CDBConnection::CDBConnection(const char *szHost, const char *szDBName,
 
 	//TLF2_2
 	rc = SQLPrepare(m_pPrepared[CESUT_STMT_TLF2_2],
-#if defined(MYSQL_ODBC) || defined(HANA_ODBC)
+#ifdef MYSQL_ODBC
 			(SQLCHAR*)"SELECT se_amt, DATE_FORMAT(se_cash_due_date, '%Y-%m-%d'), se_cash_type FROM settlement WHERE se_t_id = ?",
+#elif HANA_ODBC
+			(SQLCHAR*)"SELECT se_amt, TO_VARCHAR(se_cash_due_date, 'YYYY-MM-DD'), se_cash_type FROM settlement WHERE se_t_id = ?",
 #elif PGSQL_ODBC
 			(SQLCHAR*)"SELECT se_amt, TO_CHAR(se_cash_due_date, 'YYYY-MM-DD'), se_cash_type FROM settlement WHERE se_t_id = ?",
 #elif ORACLE_ODBC
@@ -352,8 +374,10 @@ CDBConnection::CDBConnection(const char *szHost, const char *szDBName,
 
 	//TLF2_3
 	rc = SQLPrepare(m_pPrepared[CESUT_STMT_TLF2_3],
-#if defined(MYSQL_ODBC) || defined(HANA_ODBC)
+#ifdef MYSQL_ODBC
 			(SQLCHAR*)"SELECT ct_amt, DATE_FORMAT(ct_dts, '%Y-%m-%d %H:%i:%s.%f'), ct_name FROM cash_transaction WHERE ct_t_id = ?",
+#elif HANA_ODBC
+			(SQLCHAR*)"SELECT ct_amt, TO_VARCHAR(ct_dts, 'YYYY-MM-DD HH24:MI:SS.FF6'), ct_name FROM cash_transaction WHERE ct_t_id = ?",
 #elif PGSQL_ODBC
 			(SQLCHAR*)"SELECT ct_amt, TO_CHAR(ct_dts, 'YYYY-MM-DD HH24:MI:SS.US'), ct_name FROM cash_transaction WHERE ct_t_id = ?",
 #elif ORACLE_ODBC
@@ -365,8 +389,10 @@ CDBConnection::CDBConnection(const char *szHost, const char *szDBName,
 
 	//TLF2_4
 	rc = SQLPrepare(m_pPrepared[CESUT_STMT_TLF2_4],
-#if defined(MYSQL_ODBC) || defined(HANA_ODBC)
+#ifdef MYSQL_ODBC
 			(SQLCHAR*)"SELECT DATE_FORMAT(th_dts, '%Y-%m-%d %H:%i:%s.%f'), th_st_id FROM trade_history WHERE th_t_id = ? ORDER BY th_dts LIMIT 3",
+#elif HANA_ODBC
+			(SQLCHAR*)"SELECT TO_VARCHAR(th_dts, 'YYYY-MM-DD HH24:MI:SS.FF6'), th_st_id FROM trade_history WHERE th_t_id = ? ORDER BY th_dts LIMIT 3",
 #elif PGSQL_ODBC
 			(SQLCHAR*)"SELECT TO_CHAR(th_dts, 'YYYY-MM-DD HH24:MI:SS.US'), th_st_id FROM trade_history WHERE th_t_id = ? ORDER BY th_dts LIMIT 3",
 #elif ORACLE_ODBC
@@ -378,8 +404,10 @@ CDBConnection::CDBConnection(const char *szHost, const char *szDBName,
 
 	//TLF3_1
 	rc = SQLPrepare(m_pPrepared[CESUT_STMT_TLF3_1],
-#if defined(MYSQL_ODBC) || defined(HANA_ODBC)
+#ifdef MYSQL_ODBC
 			(SQLCHAR*)"SELECT t_ca_id, t_exec_name, t_is_cash, t_trade_price, t_qty, DATE_FORMAT(t_dts, '%Y-%m-%d %H:%i:%s.%f'), t_id, t_tt_id FROM trade WHERE t_s_symb = ? AND t_dts >= ? AND t_dts <= ? ORDER BY t_dts LIMIT ?",
+#elif HANA_ODBC
+			(SQLCHAR*)"SELECT t_ca_id, t_exec_name, t_is_cash, t_trade_price, t_qty, TO_VARCHAR(t_dts, 'YYYY-MM-DD HH24:MI:SS.FF6'), t_id, t_tt_id FROM trade WHERE t_s_symb = ? AND t_dts >= ? AND t_dts <= ? ORDER BY t_dts LIMIT ?",
 #elif PGSQL_ODBC
 			(SQLCHAR*)"SELECT t_ca_id, t_exec_name, t_is_cash, t_trade_price, t_qty, TO_CHAR(t_dts, 'YYYY-MM-DD HH24:MI:SS.US'), t_id, t_tt_id FROM trade WHERE t_s_symb = ? AND t_dts >= ? AND t_dts <= ? ORDER BY t_dts LIMIT ?",
 #elif ORACLE_ODBC
@@ -391,8 +419,10 @@ CDBConnection::CDBConnection(const char *szHost, const char *szDBName,
 
 	//TLF3_2
 	rc = SQLPrepare(m_pPrepared[CESUT_STMT_TLF3_2],
-#if defined(MYSQL_ODBC) || defined(HANA_ODBC)
+#ifdef MYSQL_ODBC
 			(SQLCHAR*)"SELECT se_amt, DATE_FORMAT(se_cash_due_date, '%Y-%m-%d'), se_cash_type FROM settlement WHERE se_t_id = ?",
+#elif HANA_ODBC
+			(SQLCHAR*)"SELECT se_amt, TO_VARCHAR(se_cash_due_date, 'YYYY-MM-DD'), se_cash_type FROM settlement WHERE se_t_id = ?",
 #elif PGSQL_ODBC
 			(SQLCHAR*)"SELECT se_amt, TO_CHAR(se_cash_due_date, 'YYYY-MM-DD'), se_cash_type FROM settlement WHERE se_t_id = ?",
 #elif ORACLE_ODBC
@@ -417,8 +447,10 @@ CDBConnection::CDBConnection(const char *szHost, const char *szDBName,
 
 	//TLF3_4
 	rc = SQLPrepare(m_pPrepared[CESUT_STMT_TLF3_4],
-#if defined(MYSQL_ODBC) || defined(HANA_ODBC)
+#ifdef MYSQL_ODBC
 			(SQLCHAR*)"SELECT DATE_FORMAT(th_dts, '%Y-%m-%d %H:%i:%s.%f'), th_st_id FROM trade_history WHERE th_t_id = ? ORDER BY th_dts ASC LIMIT 3",
+#elif HANA_ODBC
+        	(SQLCHAR*)"SELECT TO_VARCHAR(th_dts, 'YYYY-MM-DD HH24:MI:SS.FF6'), th_st_id FROM trade_history WHERE th_t_id = ? ORDER BY th_dts ASC LIMIT 3",
 #elif PGSQL_ODBC
 			(SQLCHAR*)"SELECT TO_CHAR(th_dts, 'YYYY-MM-DD HH24:MI:SS.US'), th_st_id FROM trade_history WHERE th_t_id = ? ORDER BY th_dts ASC LIMIT 3",
 #elif ORACLE_ODBC
@@ -614,8 +646,10 @@ CDBConnection::CDBConnection(const char *szHost, const char *szDBName,
 	//===TradeStatus=========================
 	//TSF1_1
 	rc = SQLPrepare(m_pPrepared[CESUT_STMT_TSF1_1],
-#if defined(MYSQL_ODBC) || defined(HANA_ODBC)
+#ifdef MYSQL_ODBC
 			(SQLCHAR*)"SELECT t_id, DATE_FORMAT(t_dts,'%Y-%m-%d %H:%i:%s.%f'), st_name, tt_name, t_s_symb, t_qty, t_exec_name, t_chrg, s_name, ex_name FROM trade, status_type FORCE INDEX(PRIMARY), trade_type FORCE INDEX(PRIMARY), security, exchange WHERE t_ca_id = ? AND st_id = t_st_id AND tt_id = t_tt_id AND s_symb = t_s_symb AND ex_id = s_ex_id ORDER BY t_dts DESC LIMIT ?",
+#elif HANA_ODBC
+			(SQLCHAR*)"SELECT t_id, TO_VARCHAR(t_dts,'YYYY-MM-DD HH24:MI:SS.FF6'), st_name, tt_name, t_s_symb, t_qty, t_exec_name, t_chrg, s_name, ex_name FROM trade, status_type, trade_type, security, exchange WHERE t_ca_id = ? AND st_id = t_st_id AND tt_id = t_tt_id AND s_symb = t_s_symb AND ex_id = s_ex_id ORDER BY t_dts DESC LIMIT ?",
 #elif PGSQL_ODBC
 			(SQLCHAR*)"SELECT t_id, TO_CHAR(t_dts,'YYYY-MM-DD HH24:MI:SS.US'), st_name, tt_name, t_s_symb, t_qty, t_exec_name, t_chrg, s_name, ex_name FROM trade, status_type, trade_type, security, exchange WHERE t_ca_id = ? AND st_id = t_st_id AND tt_id = t_tt_id AND s_symb = t_s_symb AND ex_id = s_ex_id ORDER BY t_dts DESC LIMIT ?",
 #elif ORACLE_ODBC
@@ -657,8 +691,10 @@ CDBConnection::CDBConnection(const char *szHost, const char *szDBName,
 
 	//TUF1_4
 	rc = SQLPrepare(m_pPrepared[CESUT_STMT_TUF1_4],
-#if defined(MYSQL_ODBC) || defined(HANA_ODBC)
+#ifdef MYSQL_ODBC
 			(SQLCHAR*)"SELECT se_amt, DATE_FORMAT(se_cash_due_date, '%Y-%m-%d'), se_cash_type FROM settlement WHERE se_t_id = ?",
+#elif HANA_ODBC
+			(SQLCHAR*)"SELECT se_amt, TO_VARCHAR(se_cash_due_date, 'YYYY-MM-DD'), se_cash_type FROM settlement WHERE se_t_id = ?",
 #elif PGSQL_ODBC
 			(SQLCHAR*)"SELECT se_amt, TO_CHAR(se_cash_due_date, 'YYYY-MM-DD'), se_cash_type FROM settlement WHERE se_t_id = ?",
 #elif ORACLE_ODBC
@@ -670,8 +706,10 @@ CDBConnection::CDBConnection(const char *szHost, const char *szDBName,
 
 	//TUF1_5
 	rc = SQLPrepare(m_pPrepared[CESUT_STMT_TUF1_5],
-#if defined(MYSQL_ODBC) || defined(HANA_ODBC)
+#ifdef MYSQL_ODBC
 			(SQLCHAR*)"SELECT ct_amt, DATE_FORMAT(ct_dts, '%Y-%m-%d %H:%i:%s.%f'), ct_name FROM cash_transaction WHERE ct_t_id = ?",
+#elif HANA_ODBC
+			(SQLCHAR*)"SELECT ct_amt, TO_VARCHAR(ct_dts, 'YYYY-MM-DD HH24:MI:SS.FF6'), ct_name FROM cash_transaction WHERE ct_t_id = ?",
 #elif PGSQL_ODBC
 			(SQLCHAR*)"SELECT ct_amt, TO_CHAR(ct_dts, 'YYYY-MM-DD HH24:MI:SS.US'), ct_name FROM cash_transaction WHERE ct_t_id = ?",
 #elif ORACLE_ODBC
@@ -683,8 +721,10 @@ CDBConnection::CDBConnection(const char *szHost, const char *szDBName,
 
 	//TUF1_6
 	rc = SQLPrepare(m_pPrepared[CESUT_STMT_TUF1_6],
-#if defined(MYSQL_ODBC) || defined(HANA_ODBC)
+#ifdef MYSQL_ODBC
 			(SQLCHAR*)"SELECT DATE_FORMAT(th_dts, '%Y-%m-%d %H:%i:%s.%f'), th_st_id FROM trade_history WHERE th_t_id = ? ORDER BY th_dts LIMIT 3",
+#elif HANA_ODBC
+			(SQLCHAR*)"SELECT TO_VARCHAR(th_dts, 'YYYY-MM-DD HH24:MI:SS.FF6'), th_st_id FROM trade_history WHERE th_t_id = ? ORDER BY th_dts LIMIT 3",
 #elif PGSQL_ODBC
 			(SQLCHAR*)"SELECT TO_CHAR(th_dts, 'YYYY-MM-DD HH24:MI:SS.US'), th_st_id FROM trade_history WHERE th_t_id = ? ORDER BY th_dts LIMIT 3",
 #elif ORACLE_ODBC
@@ -721,8 +761,10 @@ CDBConnection::CDBConnection(const char *szHost, const char *szDBName,
 
 	//TUF2_4
 	rc = SQLPrepare(m_pPrepared[CESUT_STMT_TUF2_4],
-#if defined(MYSQL_ODBC) || defined(HANA_ODBC)
+#ifdef MYSQL_ODBC
 			(SQLCHAR*)"SELECT se_amt, DATE_FORMAT(se_cash_due_date, '%Y-%m-%d'), se_cash_type FROM settlement WHERE se_t_id = ?",
+#elif HANA_ODBC
+			(SQLCHAR*)"SELECT se_amt, TO_VARCHAR(se_cash_due_date, 'YYYY-MM-DD'), se_cash_type FROM settlement WHERE se_t_id = ?",
 #elif PGSQL_ODBC
 			(SQLCHAR*)"SELECT se_amt, TO_CHAR(se_cash_due_date, 'YYYY-MM-DD'), se_cash_type FROM settlement WHERE se_t_id = ?",
 #elif ORACLE_ODBC
@@ -734,8 +776,10 @@ CDBConnection::CDBConnection(const char *szHost, const char *szDBName,
 
 	//TUF2_5
 	rc = SQLPrepare(m_pPrepared[CESUT_STMT_TUF2_5],
-#if defined(MYSQL_ODBC) || defined(HANA_ODBC)
+#ifdef MYSQL_ODBC
 			(SQLCHAR*)"SELECT ct_amt, DATE_FORMAT(ct_dts, '%Y-%m-%d %H:%i:%s.%f'), ct_name FROM cash_transaction WHERE ct_t_id = ?",
+#elif HANA_ODBC
+	    	(SQLCHAR*)"SELECT ct_amt, TO_VARCHAR(ct_dts, 'YYYY-MM-DD HH24:MI:SS.FF6'), ct_name FROM cash_transaction WHERE ct_t_id = ?",
 #elif PGSQL_ODBC
 			(SQLCHAR*)"SELECT ct_amt, TO_CHAR(ct_dts, 'YYYY-MM-DD HH24:MI:SS.US'), ct_name FROM cash_transaction WHERE ct_t_id = ?",
 #elif ORACLE_ODBC
@@ -747,8 +791,10 @@ CDBConnection::CDBConnection(const char *szHost, const char *szDBName,
 
 	//TUF2_6
 	rc = SQLPrepare(m_pPrepared[CESUT_STMT_TUF2_6],
-#if defined(MYSQL_ODBC) || defined(HANA_ODBC)
+#ifdef MYSQL_ODBC
 			(SQLCHAR*)"SELECT DATE_FORMAT(th_dts, '%Y-%m-%d %H:%i:%s.%f'), th_st_id FROM trade_history WHERE th_t_id = ? ORDER BY th_dts LIMIT 3",
+#elif HANA_ODBC
+			(SQLCHAR*)"SELECT TO_VARCHAR(th_dts, 'YYYY-MM-DD HH24:MI:SS.FF6'), th_st_id FROM trade_history WHERE th_t_id = ? ORDER BY th_dts LIMIT 3",
 #elif PGSQL_ODBC
 			(SQLCHAR*)"SELECT TO_CHAR(th_dts, 'YYYY-MM-DD HH24:MI:SS.US'), th_st_id FROM trade_history WHERE th_t_id = ? ORDER BY th_dts LIMIT 3",
 #elif ORACLE_ODBC
@@ -760,8 +806,10 @@ CDBConnection::CDBConnection(const char *szHost, const char *szDBName,
 
 	//TUF3_1
 	rc = SQLPrepare(m_pPrepared[CESUT_STMT_TUF3_1],
-#if defined(MYSQL_ODBC) || defined(HANA_ODBC)
+#ifdef MYSQL_ODBC
 			(SQLCHAR*)"SELECT t_ca_id, t_exec_name, t_is_cash, t_trade_price, t_qty, s_name, DATE_FORMAT(t_dts, '%Y-%m-%d %H:%i:%s.%f'), t_id, t_tt_id, tt_name FROM trade, trade_type FORCE INDEX(PRIMARY), security WHERE t_s_symb = ? AND t_dts >= ? AND t_dts <= ? AND tt_id = t_tt_id AND s_symb = t_s_symb ORDER BY t_dts ASC LIMIT ?",
+#elif HANA_ODBC
+			(SQLCHAR*)"SELECT t_ca_id, t_exec_name, t_is_cash, t_trade_price, t_qty, s_name, TO_VARCHAR(t_dts, 'YYYY-MM-DD HH24:MI:SS.FF6'), t_id, t_tt_id, tt_name FROM trade, trade_type, security WHERE t_s_symb = ? AND t_dts >= ? AND t_dts <= ? AND tt_id = t_tt_id AND s_symb = t_s_symb ORDER BY t_dts ASC LIMIT ?",
 #elif PGSQL_ODBC
 			(SQLCHAR*)"SELECT t_ca_id, t_exec_name, t_is_cash, t_trade_price, t_qty, s_name, TO_CHAR(t_dts, 'YYYY-MM-DD HH24:MI:SS.US'), t_id, t_tt_id, tt_name FROM trade, trade_type, security WHERE t_s_symb = ? AND t_dts >= ? AND t_dts <= ? AND tt_id = t_tt_id AND s_symb = t_s_symb ORDER BY t_dts ASC LIMIT ?",
 #elif ORACLE_ODBC
@@ -773,8 +821,10 @@ CDBConnection::CDBConnection(const char *szHost, const char *szDBName,
 
 	//TUF3_2
 	rc = SQLPrepare(m_pPrepared[CESUT_STMT_TUF3_2],
-#if defined(MYSQL_ODBC) || defined(HANA_ODBC)
+#ifdef MYSQL_ODBC
 			(SQLCHAR*)"SELECT se_amt, DATE_FORMAT(se_cash_due_date, '%Y-%m-%d'), se_cash_type FROM settlement WHERE se_t_id = ?",
+#elif HANA_ODBC
+			(SQLCHAR*)"SELECT se_amt, TO_VARCHAR(se_cash_due_date, 'YYYY-MM-DD'), se_cash_type FROM settlement WHERE se_t_id = ?",
 #elif PGSQL_ODBC
 			(SQLCHAR*)"SELECT se_amt, TO_CHAR(se_cash_due_date, 'YYYY-MM-DD'), se_cash_type FROM settlement WHERE se_t_id = ?",
 #elif ORACLE_ODBC
@@ -800,8 +850,10 @@ CDBConnection::CDBConnection(const char *szHost, const char *szDBName,
 
 	//TUF3_5
 	rc = SQLPrepare(m_pPrepared[CESUT_STMT_TUF3_5],
-#if defined(MYSQL_ODBC) || defined(HANA_ODBC)
+#ifdef MYSQL_ODBC
 			(SQLCHAR*)"SELECT ct_amt, DATE_FORMAT(ct_dts, '%Y-%m-%d %H:%i:%s.%f'), ct_name FROM cash_transaction WHERE ct_t_id = ?",
+#elif HANA_ODBC
+			(SQLCHAR*)"SELECT ct_amt, TO_VARCHAR(ct_dts, 'YYYY-MM-DD HH24:MI:SS.FF6'), ct_name FROM cash_transaction WHERE ct_t_id = ?",
 #elif PGSQL_ODBC
 			(SQLCHAR*)"SELECT ct_amt, TO_CHAR(ct_dts, 'YYYY-MM-DD HH24:MI:SS.US'), ct_name FROM cash_transaction WHERE ct_t_id = ?",
 #elif ORACLE_ODBC
@@ -813,8 +865,10 @@ CDBConnection::CDBConnection(const char *szHost, const char *szDBName,
 
 	//TUF3_6
 	rc = SQLPrepare(m_pPrepared[CESUT_STMT_TUF3_6],
-#if defined(MYSQL_ODBC) || defined(HANA_ODBC)
+#ifdef MYSQL_ODBC
 			(SQLCHAR*)"SELECT DATE_FORMAT(th_dts, '%Y-%m-%d %H:%i:%s.%f'), th_st_id FROM trade_history WHERE th_t_id = ? ORDER BY th_dts ASC LIMIT 3",
+#elif HANA_ODBC
+			(SQLCHAR*)"SELECT TO_VARCHAR(th_dts, 'YYYY-MM-DD HH24:MI:SS.FF6'), th_st_id FROM trade_history WHERE th_t_id = ? ORDER BY th_dts ASC LIMIT 3",
 #elif PGSQL_ODBC
 			(SQLCHAR*)"SELECT TO_CHAR(th_dts, 'YYYY-MM-DD HH24:MI:SS.US'), th_st_id FROM trade_history WHERE th_t_id = ? ORDER BY th_dts ASC LIMIT 3",
 #elif ORACLE_ODBC

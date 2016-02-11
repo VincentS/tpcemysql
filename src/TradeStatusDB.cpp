@@ -85,8 +85,12 @@ void CTradeStatusDB::DoTradeStatusFrame1(const TTradeStatusFrame1Input *pIn,
 #else // !USE_PREPARE
     stmt = m_Stmt;
     ostringstream osTSF1_1;
-#if defined(MYSQL_ODBC) || defined(HANA_ODBC)
+#ifdef MYSQL_ODBC
     osTSF1_1 << "SELECT t_id, DATE_FORMAT(t_dts,'%Y-%m-%d %H:%i:%s.%f'), st_name, tt_name, t_s_symb, t_qty, t_exec_name, t_chrg, s_name, ex_name FROM trade, status_type FORCE INDEX(PRIMARY), trade_type FORCE INDEX(PRIMARY), security, exchange WHERE t_ca_id = " <<
+	pIn->acct_id << " AND st_id = t_st_id AND tt_id = t_tt_id AND s_symb = t_s_symb AND ex_id = s_ex_id ORDER BY t_dts DESC LIMIT " <<
+	max_trade_status_len;
+#elif HANA_ODBC
+    osTSF1_1 << "SELECT t_id, TO_VARCHAR(t_dts,'YYYY-MM-DD HH24:MI:SS.FF6'), st_name, tt_name, t_s_symb, t_qty, t_exec_name, t_chrg, s_name, ex_name FROM trade, status_type, trade_type, security, exchange WHERE t_ca_id = " <<
 	pIn->acct_id << " AND st_id = t_st_id AND tt_id = t_tt_id AND s_symb = t_s_symb AND ex_id = s_ex_id ORDER BY t_dts DESC LIMIT " <<
 	max_trade_status_len;
 #elif PGSQL_ODBC
