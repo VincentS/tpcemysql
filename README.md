@@ -78,7 +78,7 @@ Execute TPC-E like Benchmark
 
 Known Issues
 ============
-This project can be only compiled with CLANG / LLVM due to the usage of some deprecated system calls.
+This project can be only compiled with CLANG / LLVM due to the usage of some deprecated C functions GCC seems to have an issue with.
 
 
 License
