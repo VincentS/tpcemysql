@@ -9,10 +9,10 @@ extern eGlobalState GlobalState;
 extern CRtHistogram g_RtHistogram[TRADE_CLEANUP];
 
 CDMSUT::CDMSUT(const char *szHost, const char *szDBName,
-               const char *szDBUser, const char *szDBPass)
+               const char *szDBUser, const char *szDBPass, const char *szName)
 {
     m_pDBConnection = new CDBConnection(szHost, szDBName,
-					szDBUser, szDBPass, 3);
+					szDBUser, szDBPass,szName, 3);
     for(int i=0; i<4; i++)
 	m_CountDataMaintenance[i]=0;
 
