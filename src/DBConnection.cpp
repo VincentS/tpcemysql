@@ -37,8 +37,8 @@ CDBConnection::CDBConnection(const char *szHost, const char *szDBName,
 			   (SQLCHAR *)szDBUser, SQL_NTS, (SQLCHAR *)szDBPass, SQL_NTS);
 #elif HANA_ODBC
 	SQLSMALLINT dbSmall;
-	char *srv;
-	snprintf(srv,"DSN=%s;UID=%s;PWD=%s;CS=%s",szDBName,szDBUser,szDBPass,szSName);
+	char *srv = malloc(strlen(szDBName)+strlen(szDBUser)+strlen(szDBPass)+strlen(szSName)+1);
+	sprintf(srv,"DSN=%s;UID=%s;PWD=%s;CS=%s",szDBName,szDBUser,szDBPass,szSName);
 	printf(srv);
 	rc = SQLDriverConnect(m_Conn,NULL,(SQLCHAR *) srv,SQL_NTS,NULL,0,&dbSmall,SQL_DRIVER_NOPROMPT);
 #else

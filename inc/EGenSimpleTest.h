@@ -20,6 +20,7 @@ using namespace std;
 #include <stdlib.h>
 #include <unistd.h>
 #include <stdio.h>
+#include <string.h>
 
 #ifdef ORACLE_ODBC
 inline void numeric2bigint(long long* dest, SQL_NUMERIC_STRUCT* src)

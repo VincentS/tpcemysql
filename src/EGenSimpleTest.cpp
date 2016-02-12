@@ -84,7 +84,7 @@ void Usage()
 	"   -D string   " << szDBName << "\t\t      Data source name" << endl <<
 #endif
 #ifdef HANA_ODBC
-	"   -SC string " << szSName << "\t		Name of Database Schema" << endl <<
+	"   -j string " << szSName << "\t		Name of Database Schema" << endl <<
 #endif
 	"   -U string   " << szDBUser << "\t\t      Database user" << endl <<
 	"   -P string   " << szDBPass << "\t\t      Database password" << endl <<
@@ -147,7 +147,7 @@ void ParseCommandLine( int argc, char *argv[] )
 		strncpy(szHost, vp, sizeof(szHost));
 		break;
 #endif
-		case 'SC':
+		case 'j':
 #ifdef HANA_ODBC
 		strncpy(szSName, vp, sizeof(szSName));
 		break;
