@@ -35,6 +35,11 @@ CDBConnection::CDBConnection(const char *szHost, const char *szDBName,
 #ifdef ODBC_WRAPPER
     rc = SQLConnect_DIRECT(m_Conn, (SQLCHAR *)szHost, SQL_NTS, (SQLCHAR *)szDBName, SQL_NTS,
 			   (SQLCHAR *)szDBUser, SQL_NTS, (SQLCHAR *)szDBPass, SQL_NTS);
+#elif HANA_ODBC
+	SQLSMALLINT dbSmall;
+	char *srv;
+	snprintf(srv,"DSN=%s;UID=%s;PWD=%s;CS=%s",szDBName,szDBUserszDBPass,szSName);
+	rc = SQLDriverConnect(m_Conn,NULL,(SQLCHAR *) srv,SQL_NTS,NULL,0,&dbSmall,SQL_DRIVER_NOPROMPT);
 #else
     rc = SQLConnect(m_Conn, (SQLCHAR *)szDBName, SQL_NTS,
 		    (SQLCHAR *)szDBUser, SQL_NTS, (SQLCHAR *)szDBPass, SQL_NTS);
@@ -49,14 +54,14 @@ CDBConnection::CDBConnection(const char *szHost, const char *szDBName,
 	ThrowError(CODBCERR::eAllocHandle, SQL_HANDLE_DBC, m_Conn);
 #ifdef HANA_ODBC
     //SQLLEN lenszSName = 0;
+    // SQLPrepare(m_Stmt,(SQLCHAR *)"SET SCHEMA ?", SQL_NTS);
     //SQLBindParameter(m_Stmt, 1, SQL_PARAM_INPUT, SQL_C_CHAR,
     //                SQL_CHAR, sizeof(szSName), 0, (SQLCHAR*)szSName, sizeof(szSName),
     //                &lenszSName);
-    // SQLPrepare(m_Stmt,(SQLCHAR*)"SET SCHEMA ?", SQL_NTS);
     // rc = SQLExecute(m_Stmt);
-    rc = SQLExecDirect(m_Stmt, (SQLCHAR*)"SET SCHEMA TPCE", SQL_NTS);
-    if (rc != SQL_SUCCESS && rc != SQL_SUCCESS_WITH_INFO)
-        ThrowError(CODBCERR::eExecDirect, SQL_HANDLE_STMT, m_Stmt, __FILE__, __LINE__);
+    //rc = SQLExecDirect(m_Stmt, (SQLCHAR*)"SET SCHEMA TPCE", SQL_NTS);
+    //if (rc != SQL_SUCCESS && rc != SQL_SUCCESS_WITH_INFO)
+    //    ThrowError(CODBCERR::eExecDirect, SQL_HANDLE_STMT, m_Stmt, __FILE__, __LINE__);
     //SQLFreeStmt(m_Stmt,SQL_UNBIND);
      //SQLBindParameter(m_Stmt2, 1, SQL_PARAM_INPUT, SQL_C_CHAR,
     //                SQL_CHAR, sizeof(szSName), 0, (SQLCHAR*)szSName, sizeof(szSName),
@@ -64,9 +69,9 @@ CDBConnection::CDBConnection(const char *szHost, const char *szDBName,
     // SQLPrepare(m_Stmt2,(SQLCHAR*)"SET SCHEMA ?", SQL_NTS);
     // rc = SQLExecute(m_Stmt2);
 
-    rc = SQLExecDirect(m_Stmt2, (SQLCHAR*)"SET SCHEMA TPCE", SQL_NTS);
-    if (rc != SQL_SUCCESS && rc != SQL_SUCCESS_WITH_INFO)
-        ThrowError(CODBCERR::eExecDirect, SQL_HANDLE_STMT, m_Stmt2, __FILE__, __LINE__);
+    //rc = SQLExecDirect(m_Stmt2, (SQLCHAR*)"SET SCHEMA TPCE", SQL_NTS);
+    //if (rc != SQL_SUCCESS && rc != SQL_SUCCESS_WITH_INFO)
+    //    ThrowError(CODBCERR::eExecDirect, SQL_HANDLE_STMT, m_Stmt2, __FILE__, __LINE__);
     //SQLFreeStmt(m_Stmt2,SQL_UNBIND);
 #endif
 #ifdef USE_PREPARE
