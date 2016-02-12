@@ -19,6 +19,7 @@ using namespace std;
 #include <sqltypes.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <stdio.h>
 
 #ifdef ORACLE_ODBC
 inline void numeric2bigint(long long* dest, SQL_NUMERIC_STRUCT* src)
