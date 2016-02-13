@@ -10,7 +10,7 @@ Installation
 ============
 Before you can build the tool you need to install following dependencies:
 - unixodbc driver
-- ODBC driver for HANA (Linux)
+- ODBC driver for HANA (Linux) (Tested with 32bit version)
 - LLVM
 - CLANG
 
