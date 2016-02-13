@@ -4,7 +4,7 @@ from __future__ import print_function
 import sys
 import os
 
-sql_name = "1_load_data.sql"
+sql_name = "2_load_data.sql"
 sql_script = """--Select correct Schema
 
 SET SCHEMA {1};
