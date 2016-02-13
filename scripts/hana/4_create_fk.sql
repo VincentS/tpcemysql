@@ -13,7 +13,7 @@ ALTER TABLE customer_account ADD CONSTRAINT fk_customer_account_b
 ALTER TABLE customer_account ADD CONSTRAINT fk_customer_account_c
  FOREIGN KEY (ca_c_id) REFERENCES customer (c_id);
 
--- ALTER TABLE customer_taxrate ADD CONSTRAINT fk_customer_taxrate_tx
+ALTER TABLE customer_taxrate ADD CONSTRAINT fk_customer_taxrate_tx
  FOREIGN KEY (cx_tx_id) REFERENCES taxrate (tx_id);
 
 ALTER TABLE customer_taxrate ADD CONSTRAINT fk_customer_taxrate_c
@@ -22,7 +22,7 @@ ALTER TABLE customer_taxrate ADD CONSTRAINT fk_customer_taxrate_c
 ALTER TABLE holding ADD CONSTRAINT fk_holding_t
  FOREIGN KEY (h_t_id) REFERENCES trade (t_id);
 
--- ALTER TABLE holding ADD CONSTRAINT fk_holding_hs
+ALTER TABLE holding ADD CONSTRAINT fk_holding_hs
  FOREIGN KEY (h_ca_id, h_s_symb) REFERENCES holding_summary (hs_ca_id, hs_s_symb);
 
 ALTER TABLE holding_history ADD CONSTRAINT fk_holding_history_t1
@@ -34,19 +34,19 @@ ALTER TABLE holding_history ADD CONSTRAINT fk_holding_history_t2
 ALTER TABLE holding_summary ADD CONSTRAINT fk_holding_summary_ca
  FOREIGN KEY (hs_ca_id) REFERENCES customer_account (ca_id);
 
--- ALTER TABLE holding_summary ADD CONSTRAINT fk_holding_summary_s
+ALTER TABLE holding_summary ADD CONSTRAINT fk_holding_summary_s
  FOREIGN KEY (hs_s_symb) REFERENCES security (s_symb);
 
 ALTER TABLE watch_item ADD CONSTRAINT fk_watch_item_wl
  FOREIGN KEY (wi_wl_id) REFERENCES watch_list (wl_id);
 
--- ALTER TABLE watch_item ADD CONSTRAINT fk_watch_item_s
+ALTER TABLE watch_item ADD CONSTRAINT fk_watch_item_s
  FOREIGN KEY (wi_s_symb) REFERENCES security (s_symb);
 
 ALTER TABLE watch_list ADD CONSTRAINT fk_watch_list_c
  FOREIGN KEY (wl_c_id) REFERENCES customer (c_id);
 
--- ALTER TABLE broker ADD CONSTRAINT fk_broker_st
+ALTER TABLE broker ADD CONSTRAINT fk_broker_st
  FOREIGN KEY (b_st_id) REFERENCES status_type (st_id);
 
 ALTER TABLE cash_transaction ADD CONSTRAINT fk_cash_transaction_t
@@ -55,22 +55,22 @@ ALTER TABLE cash_transaction ADD CONSTRAINT fk_cash_transaction_t
 ALTER TABLE charge ADD CONSTRAINT fk_charge_tt
  FOREIGN KEY (ch_tt_id) REFERENCES trade_type (tt_id);
 
--- ALTER TABLE commission_rate ADD CONSTRAINT fk_commission_rate_tt
+ALTER TABLE commission_rate ADD CONSTRAINT fk_commission_rate_tt
  FOREIGN KEY (cr_tt_id) REFERENCES trade_type (tt_id);
 
--- ALTER TABLE commission_rate ADD CONSTRAINT fk_commission_rate_ex
+ALTER TABLE commission_rate ADD CONSTRAINT fk_commission_rate_ex
  FOREIGN KEY (cr_ex_id) REFERENCES exchange (ex_id);
 
 ALTER TABLE settlement ADD CONSTRAINT fk_settlement_t
  FOREIGN KEY (se_t_id) REFERENCES trade (t_id);
 
--- ALTER TABLE trade ADD CONSTRAINT fk_trade_st
+ALTER TABLE trade ADD CONSTRAINT fk_trade_st
  FOREIGN KEY (t_st_id) REFERENCES status_type (st_id);
 
--- ALTER TABLE trade ADD CONSTRAINT fk_trade_tt
+ALTER TABLE trade ADD CONSTRAINT fk_trade_tt
  FOREIGN KEY (t_tt_id) REFERENCES trade_type (tt_id);
 
--- ALTER TABLE trade ADD CONSTRAINT fk_trade_s
+ALTER TABLE trade ADD CONSTRAINT fk_trade_s
  FOREIGN KEY (t_s_symb) REFERENCES security (s_symb);
 
 ALTER TABLE trade ADD CONSTRAINT fk_trade_ca

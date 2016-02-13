@@ -1180,7 +1180,8 @@ void CTradeLookupDB::DoTradeLookupFrame4(const TTradeLookupFrame4Input *pIn,
 	rc = SQLFetch(stmt);
 	if (rc == SQL_NO_DATA_FOUND) {
 		pOut->status = +641;
-		goto end;
+		printf("Error!");
+		//goto end;
 	} else {
 		pOut->status = CBaseTxnErr::SUCCESS;
 	}
