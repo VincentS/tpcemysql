@@ -18,7 +18,7 @@ using namespace std;
 #include <sqlext.h>
 #include <sqltypes.h>
 #include <stdlib.h>
-//#include <unistd.h>
+#include <unistd.h>
 
 
 #ifdef ORACLE_ODBC

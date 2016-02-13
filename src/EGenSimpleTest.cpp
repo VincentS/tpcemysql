@@ -84,7 +84,7 @@ void Usage()
 	"   -D string   " << szDBName << "\t\t      Data source name" << endl <<
 #endif
 #ifdef HANA_ODBC
-	"   -j string " << szSName << "\t		Name of Database Schema" << endl <<
+	"   -j string   " << szSName << "\t		Name of Database Schema" << endl <<
 #endif
 	"   -U string   " << szDBUser << "\t\t      Database user" << endl <<
 	"   -P string   " << szDBPass << "\t\t      Database password" << endl <<
@@ -504,7 +504,10 @@ int main(int argc, char* argv[])
     cout<<"\tDatabase server:\t\t"<<          szHost <<endl;
     cout<<"\tDatabase name:\t\t\t"<<          szDBName <<endl;
 #else
-    cout<<"\tData source name:\t\t"<<       szDBName <<endl;
+    cout<<"\tData source name:\t\t"<<         szDBName <<endl;
+#endif
+#ifdef HANA_ODBC
+	cout<<"\tSchema name:\t\t\t"<<			  szSName <<endl;
 #endif
     cout<<"\tDatabase user:\t\t\t"<<          szDBUser <<endl;
     cout<<"\tDatabase password:\t\t"<<        szDBPass <<endl;
