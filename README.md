@@ -44,7 +44,12 @@ Generate Test Data
 ----------------------------------------
 First you have to generate Test Data using `EGenLoader` in the bin directory supplying the path to the `flat_in` and `flat_out` directory. You can adjust the generator by supplying additional arguments to control the size of the generated dataset. 
 
-Example:
+```
+./EGenLoader -i flat_in -o flat_out -c <number_of_customers> -t <active_customers> -f <number_of_customers_for_1TRTPS> -w <days_of_trade>
+```
+
+
+Concrete Example:
 ```
 ./EGenLoader -i flat_in -o flat_out -c 2000 -t 2000 -f 200 -w 50
 ```
@@ -70,17 +75,33 @@ We load the flatfiles into the SAP HANA database by executing following command:
 
 Create FK / Indicies / ... in Database
 -----------------------------------------
-After successfully importing the generated falt_files you have to execute the remaining SQL scripts (3-n) in ascending order.
+After successfully importing the previously generated flat_files you have to execute the remaining SQL scripts (3-6) in ascending order.
+**The shell script `6_create_sequence.sql` has to be executed with the user account which executes the TPC-E benchmark **
 
 
 Execute TPC-E like Benchmark
 -----------------------------
+To execute the Benchmark run the following command:
+```
+./EGenSimpleTest -c <number_of_customers> -a <active_customers> -f <number_of_customers_for_1TRTPS> -d <days_of_trade> -l <number_of_customer_load_unit> -e <path_to>/flat_in -D <name_of_data_source> -U <username> -P <password> -t <duration> -r <ramp_up> -u <number_of_users>
+```
+**The values <number_of_customers>,<active_customers>,<number_of_customers_for_1TRTPS>,<days_of_trade> have to be the same as used at the ./EGenLoader data generator !***
 
 Known Issues
 ============
 This project can be only compiled with CLANG / LLVM due to the usage of some deprecated C functions GCC seems to have an issue with.
 
+Further Improvements
+=====================
+- Adjust the Benchmark using the TPC-E Changelog from 1.10 to 1.14 (Currently 1.9) and supplied Source
+- Fix Compile Error when using GCC
 
+Miscellaneous
+===============
+Debugging
+---------
+Compile the program with the argument -DDEBUG and execute the benchmark with the argument -o <directory_for_error_log> for additional debugging output.
+  
 License
 =======
 This package based on tpc-e workload described  on http://www.tpc.org/tpce/default.asp
