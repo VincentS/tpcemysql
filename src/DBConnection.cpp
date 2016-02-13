@@ -50,7 +50,7 @@ CDBConnection::CDBConnection(const char *szHost, const char *szDBName,
 
 
 //Set Schema for HANA Database for each connection (Default:TPCE)
-    
+
 #ifdef HANA_ODBC
 
     ostringstream select_schema;
@@ -1334,8 +1334,10 @@ void CDBConnection::ThrowError( CODBCERR::ACTION eAction, SQLSMALLINT HandleType
         // check for deadlock
         if (
 #ifdef MYSQL_ODBC
-	    lNativeError == 1213 ||
+        lNativeError == 1213 ||
 #elif ORACLE_ODBC
+#elif HANA_ODBC
+        lNativeError == 133 ||
 #elif PGSQL_ODBC
 	    strcmp(szState, "40P01") == 0 ||
 #endif
