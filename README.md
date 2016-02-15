@@ -104,7 +104,9 @@ Miscellaneous
 ===============
 Debugging
 ---------
-Compile the program with the argument -DDEBUG and execute the benchmark with the argument -o <directory_for_error_log> for additional debugging output.
+Compile the program with the argument -DDEBUG and execute the benchmark with the argument -o <directory_for_error_log> for additional debugging output. 
+
+The compiler flag -DPRINT_DEADLOCK can also help to identify locking conflicts in the program when several transactions fail.
   
 License
 =======
