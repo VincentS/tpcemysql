@@ -10,200 +10,200 @@ sql_script = """--Select correct Schema
 SET SCHEMA {1};
 
 --Table: account_permission
-IMPORT FROM CSV FILE '{0}/AccountPermission.txt' INTO "account_permission" WITH
+IMPORT FROM CSV FILE '{0}/AccountPermission.txt' INTO "ACCOUNT_PERMISSION" WITH
 RECORD DELIMITED BY '\\n'
 FIELD DELIMITED BY '|'
 FAIL ON INVALID DATA;
 
 --Table: customer
-IMPORT FROM CSV FILE '{0}/Customer.txt' INTO "customer" WITH
+IMPORT FROM CSV FILE '{0}/Customer.txt' INTO "CUSTOMER" WITH
 RECORD DELIMITED BY '\\n'
 FIELD DELIMITED BY '|'
 FAIL ON INVALID DATA;
 
 --Table: customer_account
-IMPORT FROM CSV FILE '{0}/CustomerAccount.txt' INTO "customer_account" WITH
+IMPORT FROM CSV FILE '{0}/CustomerAccount.txt' INTO "CUSTOMER_ACCOUNT" WITH
 RECORD DELIMITED BY '\\n'
 FIELD DELIMITED BY '|'
 FAIL ON INVALID DATA;
 
 --Table: customer_taxrate
-IMPORT FROM CSV FILE '{0}/CustomerTaxrate.txt' INTO "customer_taxrate" WITH
+IMPORT FROM CSV FILE '{0}/CustomerTaxrate.txt' INTO "CUSTOMER_TAXRATE" WITH
 RECORD DELIMITED BY '\\n'
 FIELD DELIMITED BY '|'
 FAIL ON INVALID DATA;
 
 --Table: holding
-IMPORT FROM CSV FILE '{0}/flat_out/Holding.txt' INTO "holding" WITH
+IMPORT FROM CSV FILE '{0}/Holding.txt' INTO "HOLDING" WITH
 RECORD DELIMITED BY '\\n'
 FIELD DELIMITED BY '|'
 FAIL ON INVALID DATA;
 
 --Table: holding_history
-IMPORT FROM CSV FILE '{0}/flat_out/HoldingHistory.txt' INTO "holding_history" WITH
+IMPORT FROM CSV FILE '{0}/HoldingHistory.txt' INTO "HOLDING_HISTORY" WITH
 RECORD DELIMITED BY '\\n'
 FIELD DELIMITED BY '|'
 FAIL ON INVALID DATA;
 
 --Table: holding_summary
-IMPORT FROM CSV FILE '{0}/flat_out/HoldingSummary.txt' INTO "holding_summary" WITH
+IMPORT FROM CSV FILE '{0}/HoldingSummary.txt' INTO "HOLDING_SUMMARY" WITH
 RECORD DELIMITED BY '\\n'
 FIELD DELIMITED BY '|'
 FAIL ON INVALID DATA;
 
 --Table: watch_item
-IMPORT FROM CSV FILE '{0}/WatchItem.txt' INTO "watch_item" WITH
+IMPORT FROM CSV FILE '{0}/WatchItem.txt' INTO "WATCH_ITEM" WITH
 RECORD DELIMITED BY '\\n'
 FIELD DELIMITED BY '|'
 FAIL ON INVALID DATA;
 
 --Table: watch_list
-IMPORT FROM CSV FILE '{0}/WatchList.txt' INTO "watch_list" WITH
+IMPORT FROM CSV FILE '{0}/WatchList.txt' INTO "WATCH_LIST" WITH
 RECORD DELIMITED BY '\\n'
 FIELD DELIMITED BY '|'
 FAIL ON INVALID DATA;
 
 
 --Table: broker
-IMPORT FROM CSV FILE '{0}/Broker.txt' INTO "broker" WITH
+IMPORT FROM CSV FILE '{0}/Broker.txt' INTO "BROKER" WITH
 RECORD DELIMITED BY '\\n'
 FIELD DELIMITED BY '|'
 FAIL ON INVALID DATA;
 
 --Table: cash_transaction
-IMPORT FROM CSV FILE '{0}/CashTransaction.txt' INTO "cash_transaction" WITH
+IMPORT FROM CSV FILE '{0}/CashTransaction.txt' INTO "CASH_TRANSACTION" WITH
 RECORD DELIMITED BY '\\n'
 FIELD DELIMITED BY '|'
 FAIL ON INVALID DATA;
 
 --Table: charge
-IMPORT FROM CSV FILE '{0}/Charge.txt' INTO "charge" WITH
+IMPORT FROM CSV FILE '{0}/Charge.txt' INTO "CHARGE" WITH
 RECORD DELIMITED BY '\\n'
 FIELD DELIMITED BY '|'
 FAIL ON INVALID DATA;
 
 --Table: comission_rate
-IMPORT FROM CSV FILE '{0}/CommissionRate.txt' INTO "comission_rate" WITH
+IMPORT FROM CSV FILE '{0}/CommissionRate.txt' INTO "COMMISSION_RATE" WITH
 RECORD DELIMITED BY '\\n'
 FIELD DELIMITED BY '|'
 FAIL ON INVALID DATA;
 
 --Table: settlement
-IMPORT FROM CSV FILE '{0}/Settlement.txt' INTO "settlement" WITH
+IMPORT FROM CSV FILE '{0}/Settlement.txt' INTO "SETTLEMENT" WITH
 RECORD DELIMITED BY '\\n'
 FIELD DELIMITED BY '|'
 FAIL ON INVALID DATA;
 
 --Table: trade
-IMPORT FROM CSV FILE '{0}/Trade.txt' INTO "trade" WITH
+IMPORT FROM CSV FILE '{0}/Trade.txt' INTO "TRADE" WITH
 RECORD DELIMITED BY '\\n'
 FIELD DELIMITED BY '|'
 FAIL ON INVALID DATA;
 
 --Table: trade_history
-IMPORT FROM CSV FILE '{0}/TradeHistory.txt' INTO "trade_history" WITH
+IMPORT FROM CSV FILE '{0}/TradeHistory.txt' INTO "TRADE_HISTORY" WITH
 RECORD DELIMITED BY '\\n'
 FIELD DELIMITED BY '|'
 FAIL ON INVALID DATA;
 
 --Table: trade_request Was already commented out
---IMPORT FROM CSV FILE '{0}/TradeRequest.txt' INTO "trade_request" WITH
+--IMPORT FROM CSV FILE '{0}/TradeRequest.txt' INTO "TRADE_REQUEST" WITH
 --RECORD DELIMITED BY '\\n'
 --FIELD DELIMITED BY '|'
 --FAIL ON INVALID DATA;
 
 --Table: trade_type
-IMPORT FROM CSV FILE '{0}/TradeType.txt' INTO "trade_type" WITH
+IMPORT FROM CSV FILE '{0}/TradeType.txt' INTO "TRADE_TYPE" WITH
 RECORD DELIMITED BY '\\n'
 FIELD DELIMITED BY '|'
 FAIL ON INVALID DATA;
 
 --Table: company
-IMPORT FROM CSV FILE '{0}/Company.txt' INTO "company" WITH
+IMPORT FROM CSV FILE '{0}/Company.txt' INTO "COMPANY" WITH
 RECORD DELIMITED BY '\\n'
 FIELD DELIMITED BY '|'
 FAIL ON INVALID DATA;
 
 --Table: company_competitor
-IMPORT FROM CSV FILE '{0}/CompanyCompetitor.txt' INTO "company_competitor" WITH
+IMPORT FROM CSV FILE '{0}/CompanyCompetitor.txt' INTO "COMPANY_COMPETITOR" WITH
 RECORD DELIMITED BY '\\n'
 FIELD DELIMITED BY '|'
 FAIL ON INVALID DATA;
 
 --Table: daily_market
-IMPORT FROM CSV FILE '{0}/DailyMarket.txt' INTO "daily_market" WITH
+IMPORT FROM CSV FILE '{0}/DailyMarket.txt' INTO "DAILY_MARKET" WITH
 RECORD DELIMITED BY '\\n'
 FIELD DELIMITED BY '|'
 FAIL ON INVALID DATA;
 
 --Table: exchange
-IMPORT FROM CSV FILE '{0}/Exchange.txt' INTO "exchange" WITH
+IMPORT FROM CSV FILE '{0}/Exchange.txt' INTO "EXCHANGE" WITH
 RECORD DELIMITED BY '\\n'
 FIELD DELIMITED BY '|'
 FAIL ON INVALID DATA;
 
 --Table: financial
-IMPORT FROM CSV FILE '{0}/Financial.txt' INTO "financial" WITH
+IMPORT FROM CSV FILE '{0}/Financial.txt' INTO "FINANCIAL" WITH
 RECORD DELIMITED BY '\\n'
 FIELD DELIMITED BY '|'
 FAIL ON INVALID DATA;
 
 --Table: industry
-IMPORT FROM CSV FILE '{0}/Industry.txt' INTO "industry" WITH
+IMPORT FROM CSV FILE '{0}/Industry.txt' INTO "INDUSTRY" WITH
 RECORD DELIMITED BY '\\n'
 FIELD DELIMITED BY '|'
 FAIL ON INVALID DATA;
 
 --Table: last_trade
-IMPORT FROM CSV FILE '{0}/LastTrade.txt' INTO "last_trade" WITH
+IMPORT FROM CSV FILE '{0}/LastTrade.txt' INTO "LAST_TRADE" WITH
 RECORD DELIMITED BY '\\n'
 FIELD DELIMITED BY '|'
 FAIL ON INVALID DATA;
 
 --Table: news_item
-IMPORT FROM CSV FILE '{0}/NewsItem.txt' INTO "news_item" WITH
+IMPORT FROM CSV FILE '{0}/NewsItem.txt' INTO "NEWS_ITEM" WITH
 RECORD DELIMITED BY '\\n'
 FIELD DELIMITED BY '|'
 FAIL ON INVALID DATA;
 
 --Table: news_xref
-IMPORT FROM CSV FILE '{0}/NewsXRef.txt' INTO "news_xref" WITH
+IMPORT FROM CSV FILE '{0}/NewsXRef.txt' INTO "NEWS_XREF" WITH
 RECORD DELIMITED BY '\\n'
 FIELD DELIMITED BY '|'
 FAIL ON INVALID DATA;
 
 --Table: sector
-IMPORT FROM CSV FILE '{0}/Sector.txt' INTO "sector" WITH
+IMPORT FROM CSV FILE '{0}/Sector.txt' INTO "SECTOR" WITH
 RECORD DELIMITED BY '\\n'
 FIELD DELIMITED BY '|'
 FAIL ON INVALID DATA;
 
 --Table: security
-IMPORT FROM CSV FILE '{0}/Security.txt' INTO "security" WITH
+IMPORT FROM CSV FILE '{0}/Security.txt' INTO "SECURITY" WITH
 RECORD DELIMITED BY '\\n'
 FIELD DELIMITED BY '|'
 FAIL ON INVALID DATA;
 
 --Table: address
-IMPORT FROM CSV FILE '{0}/Address.txt' INTO "address" WITH
+IMPORT FROM CSV FILE '{0}/Address.txt' INTO "ADDRESS" WITH
 RECORD DELIMITED BY '\\n'
 FIELD DELIMITED BY '|'
 FAIL ON INVALID DATA;
 
 --Table: status_type
-IMPORT FROM CSV FILE '{0}/StatusType.txt' INTO "status_type" WITH
+IMPORT FROM CSV FILE '{0}/StatusType.txt' INTO "STATUS_TYPE" WITH
 RECORD DELIMITED BY '\\n'
 FIELD DELIMITED BY '|'
 FAIL ON INVALID DATA;
 
 --Table: taxrate
-IMPORT FROM CSV FILE '{0}/Taxrate.txt' INTO "taxrate" WITH
+IMPORT FROM CSV FILE '{0}/Taxrate.txt' INTO "TAXRATE" WITH
 RECORD DELIMITED BY '\\n'
 FIELD DELIMITED BY '|'
 FAIL ON INVALID DATA;
 
 --Table: zip_code
-IMPORT FROM CSV FILE '{0}/ZipCode.txt' INTO "zip_code" WITH
+IMPORT FROM CSV FILE '{0}/ZipCode.txt' INTO "ZIP_CODE" WITH
 RECORD DELIMITED BY '\\n'
 FIELD DELIMITED BY '|'
 FAIL ON INVALID DATA;"""
