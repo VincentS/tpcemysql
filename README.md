@@ -9,8 +9,8 @@ In this package SAP HANA Support was added to the TPC-E Percona version.
 Installation
 ============
 Before you can build the tool you need to install following dependencies:
-- unixodbc driver
-- ODBC driver for HANA (Linux) (Tested with 32bit version)
+- unixodbc driver compiled from source 2.4.3 (Brew / .... has outdated packages)
+- ODBC driver for HANA (Linux) (Tested with 64 bit version of driver)
 - LLVM
 - CLANG
 
