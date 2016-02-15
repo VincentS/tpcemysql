@@ -117,7 +117,7 @@ CDBConnection::CDBConnection(const char *szHost, const char *szDBName,
 
 	//CPF1_2
 	rc = SQLPrepare(m_pPrepared[CESUT_STMT_CPF1_2],
-#if MYSQL_ODBC
+#ifdef MYSQL_ODBC
 			(SQLCHAR*)"SELECT c_st_id, c_l_name, c_f_name, c_m_name, c_gndr, c_tier, DATE_FORMAT(c_dob,'%Y-%m-%d'), c_ad_id, c_ctry_1, c_area_1, c_local_1, c_ext_1, c_ctry_2, c_area_2, c_local_2, c_ext_2, c_ctry_3, c_area_3, c_local_3, c_ext_3, c_email_1, c_email_2 FROM customer WHERE c_id = ?",
 #elif HANA_ODBC
 			(SQLCHAR*)"SELECT c_st_id, c_l_name, c_f_name, c_m_name, c_gndr, c_tier, TO_VARCHAR(c_dob,'YYYY-MM-DD'), c_ad_id, c_ctry_1, c_area_1, c_local_1, c_ext_1, c_ctry_2, c_area_2, c_local_2, c_ext_2, c_ctry_3, c_area_3, c_local_3, c_ext_3, c_email_1, c_email_2 FROM customer WHERE c_id = ?",
@@ -143,7 +143,7 @@ CDBConnection::CDBConnection(const char *szHost, const char *szDBName,
 
 	//CPF2_1
 	rc = SQLPrepare(m_pPrepared[CESUT_STMT_CPF2_1],
-#if MYSQL_ODBC
+#ifdef MYSQL_ODBC
 			(SQLCHAR*)"SELECT t_id, t_s_symb, t_qty, st_name, DATE_FORMAT(th_dts,'%Y-%m-%d %H:%i:%s.%f') FROM (SELECT t_id AS id FROM trade WHERE t_ca_id = ? ORDER BY t_dts DESC LIMIT 10) AS t, trade, trade_history, status_type FORCE INDEX(PRIMARY) WHERE t_id = id AND th_t_id = t_id AND st_id = th_st_id ORDER BY th_dts DESC LIMIT ?",
 #elif HANA_ODBC
 			(SQLCHAR*)"SELECT t_id, t_s_symb, t_qty, st_name, TO_VARCHAR(th_dts,'YYYY-MM-DD HH24:MI:SS.FF6') FROM (SELECT t_id AS id FROM trade WHERE t_ca_id = ? ORDER BY t_dts DESC LIMIT 10) AS t, trade, trade_history, status_type WHERE t_id = id AND th_t_id = t_id AND st_id = th_st_id ORDER BY th_dts DESC LIMIT ?",
