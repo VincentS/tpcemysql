@@ -124,7 +124,7 @@ The compiler flag -DPRINT_DEADLOCK can also help to identify locking conflicts i
 
 Running using not Prepared Statements
 --------------------------------------
-When compiling the TPC-E benchmark without `-DUSE_PREPARE` set the ramp-up period to at least 60 seconds (-r 60) to get measurement results.
+When compiling the TPC-E benchmark without `-DUSE_PREPARE` set the ramp-up period to at least 60 seconds `-r 60` to get measurement results.
 
 
 License
