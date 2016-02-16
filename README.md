@@ -103,6 +103,10 @@ To execute the Benchmark run the following command:
 ```
 ./EGenSimpleTest -c <number_of_customers> -a <active_customers> -f <number_of_customers_for_1TRTPS> -d <days_of_trade> -l <number_of_customer_load_unit> -e <path_to>/flat_in -D <name_of_data_source> -U <username> -P <password> -t <duration> -r <ramp_up> -u <number_of_users>
 ```
+
+Usage Example for Percona TPC-E like benchmark:
+https://www.percona.com/blog/2010/02/09/introducing-percona-patches-for-5-1/
+
 **The values `<number_of_customers>`,`<active_customers>`,`<number_of_customers_for_1TRTPS>`,`<days_of_trade>` have to be the same as used at the ./EGenLoader data generator !***
 
 Known Issues
