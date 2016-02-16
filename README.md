@@ -9,13 +9,27 @@ In this package SAP HANA Support was added to the TPC-E Percona version.
 Installation
 ============
 Before you can build the tool you need to install following dependencies:
-- unixodbc driver
-- ODBC driver for HANA (Linux) (Tested with 32bit version)
+- unixodbc driver (>= 2.3.4)
+- ODBC driver for HANA (Linux) (Tested with 64 bit version of driver)
 - LLVM
 - CLANG
 
-First adjust the include path in the `makefile` in the directory `prj` to the directory with the unixodbc library / include files
-on your system. Then execute the makefile by calling `make`.
+
+
+Install unixodbc from Source (>= 2.3.4)
+------------------------------
+You have to install unixodbc from source instead of using package manager installed on your system (e.g. homebrew), since the package 
+homebrew is providing is outdated and missing some crucial fixes introduced in 2.3.3.
+
+- Get source from http://www.unixodbc.org/ and untar it into an directory
+- Run `./configure` on your system
+- Run `make`
+- Run `make install` (sudo maybe required here to copy libraries into system path)
+
+Compile TPC-E
+--------------
+- Adjust the include path in the `makefile` in the directory `prj` to the directory with the unixodbc library / include files (if not located in the usual system directories) on your system
+- Execute the makefile by calling `make`
 
 Configure unixodbc
 ------------------
@@ -89,6 +103,14 @@ To execute the Benchmark run the following command:
 ```
 ./EGenSimpleTest -c <number_of_customers> -a <active_customers> -f <number_of_customers_for_1TRTPS> -d <days_of_trade> -l <number_of_customer_load_unit> -e <path_to>/flat_in -D <name_of_data_source> -U <username> -P <password> -t <duration> -r <ramp_up> -u <number_of_users>
 ```
+
+Example
+```
+./EGenSimpleTest -c 2000 -a 2000 -f 200 -d 50 -l 200 -e ../flat_in -D hana -U <user> -P <password> -t 30 -r 10 -u 2
+```
+Usage Example for Percona TPC-E like benchmark:
+https://www.percona.com/blog/2010/02/09/introducing-percona-patches-for-5-1/
+
 **The values `<number_of_customers>`,`<active_customers>`,`<number_of_customers_for_1TRTPS>`,`<days_of_trade>` have to be the same as used at the ./EGenLoader data generator !***
 
 Known Issues
@@ -104,8 +126,15 @@ Miscellaneous
 ===============
 Debugging
 ---------
-Compile the program with the argument -DDEBUG and execute the benchmark with the argument -o <directory_for_error_log> for additional debugging output.
-  
+Compile the program with the argument -DDEBUG and execute the benchmark with the argument -o <directory_for_error_log> for additional debugging output. 
+
+The compiler flag -DPRINT_DEADLOCK can also help to identify locking conflicts in the program when several transactions fail.
+
+Running using not Prepared Statements
+--------------------------------------
+When compiling the TPC-E benchmark without `-DUSE_PREPARE` set the ramp-up period to at least 60 seconds `-r 60` to get measurement results.
+
+
 License
 =======
 This package based on tpc-e workload described  on http://www.tpc.org/tpce/default.asp
