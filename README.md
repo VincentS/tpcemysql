@@ -104,6 +104,10 @@ To execute the Benchmark run the following command:
 ./EGenSimpleTest -c <number_of_customers> -a <active_customers> -f <number_of_customers_for_1TRTPS> -d <days_of_trade> -l <number_of_customer_load_unit> -e <path_to>/flat_in -D <name_of_data_source> -U <username> -P <password> -t <duration> -r <ramp_up> -u <number_of_users>
 ```
 
+Example
+```
+./EGenSimpleTest -c 2000 -a 2000 -f 200 -d 50 -l 200 -e ../flat_in -D hana -U <user> -P <password> -t 30 -r 10 -u 2
+```
 Usage Example for Percona TPC-E like benchmark:
 https://www.percona.com/blog/2010/02/09/introducing-percona-patches-for-5-1/
 
