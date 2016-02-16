@@ -214,7 +214,7 @@ def create_file(csv_file,schema):
 	
 def main(argv):
 	if not len(argv) == 2:
-		print("Please supply the path to the directory with the files to be imported and the target schema name as parameter!\n E.g. python 1_load_data.py <path_to_folder> <schema_name>")
+		print("Please supply the path to the directory with the files to be imported and the target schema name as parameter!\n E.g. python 2_load_data.py <path_to_folder> <schema_name>")
 		sys.exit()
 	csv_file = os.path.abspath(argv[0])
 	print("Create SQL Script {} ...\n".format(sql_name))

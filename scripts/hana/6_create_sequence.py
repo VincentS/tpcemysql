@@ -14,6 +14,7 @@ def find_max(csv_file):
                 return max(row[0] for row in csv.reader(f,delimiter='|',lineterminator='\n'))
 def create_file(max_value):
 	with open(sql_name,'w') as f:
+		f.write("DROP SEQUENCE seq;")
 		f.write("CREATE SEQUENCE seq START WITH %s NO MAXVALUE NO CYCLE;" % str(max_value))
 	
 def main(argv):

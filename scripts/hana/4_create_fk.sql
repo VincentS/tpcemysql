@@ -1,7 +1,7 @@
 ALTER TABLE account_permission ADD CONSTRAINT fk_account_permission_ca
  FOREIGN KEY (ap_ca_id) REFERENCES customer_account (ca_id);
 
--- ALTER TABLE customer ADD CONSTRAINT fk_customer_st
+ALTER TABLE customer ADD CONSTRAINT fk_customer_st
  FOREIGN KEY (c_st_id) REFERENCES status_type (st_id);
 
 ALTER TABLE customer ADD CONSTRAINT fk_customer_ad
@@ -79,25 +79,25 @@ ALTER TABLE trade ADD CONSTRAINT fk_trade_ca
 ALTER TABLE trade_history ADD CONSTRAINT fk_trade_history_t
  FOREIGN KEY (th_t_id) REFERENCES trade (t_id);
 
--- ALTER TABLE trade_history ADD CONSTRAINT fk_trade_history_st
+ALTER TABLE trade_history ADD CONSTRAINT fk_trade_history_st
  FOREIGN KEY (th_st_id) REFERENCES status_type (st_id);
 
 ALTER TABLE trade_request ADD CONSTRAINT fk_trade_request_t
  FOREIGN KEY (tr_t_id) REFERENCES trade (t_id);
 
--- ALTER TABLE trade_request ADD CONSTRAINT fk_trade_request_tt
+ALTER TABLE trade_request ADD CONSTRAINT fk_trade_request_tt
  FOREIGN KEY (tr_tt_id) REFERENCES trade_type (tt_id);
 
--- ALTER TABLE trade_request ADD CONSTRAINT fk_trade_request_s
+ALTER TABLE trade_request ADD CONSTRAINT fk_trade_request_s
  FOREIGN KEY (tr_s_symb) REFERENCES security (s_symb);
 
 ALTER TABLE trade_request ADD CONSTRAINT fk_trade_request_b
  FOREIGN KEY (tr_b_id) REFERENCES broker (b_id);
 
--- ALTER TABLE company ADD CONSTRAINT fk_company_st
+ALTER TABLE company ADD CONSTRAINT fk_company_st
  FOREIGN KEY (co_st_id) REFERENCES status_type (st_id);
 
--- ALTER TABLE company ADD CONSTRAINT fk_company_in
+ALTER TABLE company ADD CONSTRAINT fk_company_in
  FOREIGN KEY (co_in_id) REFERENCES industry (in_id);
 
 ALTER TABLE company ADD CONSTRAINT fk_company_ad
@@ -109,10 +109,10 @@ ALTER TABLE company_competitor ADD CONSTRAINT fk_company_competitor_co1
 ALTER TABLE company_competitor ADD CONSTRAINT fk_company_competitor_co2
  FOREIGN KEY (cp_comp_co_id) REFERENCES company (co_id);
 
--- ALTER TABLE company_competitor ADD CONSTRAINT fk_company_competitor_in
+ALTER TABLE company_competitor ADD CONSTRAINT fk_company_competitor_in
  FOREIGN KEY (cp_in_id) REFERENCES industry (in_id);
 
--- ALTER TABLE daily_market ADD CONSTRAINT fk_daily_market_s
+ALTER TABLE daily_market ADD CONSTRAINT fk_daily_market_s
  FOREIGN KEY (dm_s_symb) REFERENCES security (s_symb);
 
 ALTER TABLE exchange ADD CONSTRAINT fk_exchange_ad
@@ -121,10 +121,10 @@ ALTER TABLE exchange ADD CONSTRAINT fk_exchange_ad
 ALTER TABLE financial ADD CONSTRAINT fk_financial_co
  FOREIGN KEY (fi_co_id) REFERENCES company (co_id);
 
--- ALTER TABLE industry ADD CONSTRAINT fk_industry_sc
+ALTER TABLE industry ADD CONSTRAINT fk_industry_sc
  FOREIGN KEY (in_sc_id) REFERENCES sector (sc_id);
 
--- ALTER TABLE last_trade ADD CONSTRAINT fk_last_trade_s
+ALTER TABLE last_trade ADD CONSTRAINT fk_last_trade_s
  FOREIGN KEY (lt_s_symb) REFERENCES security (s_symb);
 
 ALTER TABLE news_xref ADD CONSTRAINT fk_news_xref_ni
@@ -133,14 +133,14 @@ ALTER TABLE news_xref ADD CONSTRAINT fk_news_xref_ni
 ALTER TABLE news_xref ADD CONSTRAINT fk_news_xref_co
  FOREIGN KEY (nx_co_id) REFERENCES company (co_id);
 
--- ALTER TABLE security ADD CONSTRAINT fk_security_st
+ALTER TABLE security ADD CONSTRAINT fk_security_st
  FOREIGN KEY (s_st_id) REFERENCES status_type (st_id);
 
--- ALTER TABLE security ADD CONSTRAINT fk_security_ex
+ALTER TABLE security ADD CONSTRAINT fk_security_ex
  FOREIGN KEY (s_ex_id) REFERENCES exchange (ex_id);
 
 ALTER TABLE security ADD CONSTRAINT fk_security_co
  FOREIGN KEY (s_co_id) REFERENCES company (co_id);
 
---ALTER TABLE address ADD CONSTRAINT fk_address_zc
+ALTER TABLE address ADD CONSTRAINT fk_address_zc
  FOREIGN KEY (ad_zc_code) REFERENCES zip_code (zc_code);

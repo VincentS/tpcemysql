@@ -473,7 +473,7 @@ void CDataMaintenanceDB::DoDataMaintenanceFrame1(
 		AND nx_co_id = comp_id */
 
 	ostringstream osDMF1_16;
-#if defined(MYSQL_ODBC) || defined(HANA_ODBC)
+#if (defined(MYSQL_ODBC) || defined(HANA_ODBC))
 	osDMF1_16 << "UPDATE news_item, news_xref SET ni_dts = ni_dts + INTERVAL '1' day WHERE ni_id = nx_ni_id AND nx_co_id = " <<
 	    pIn->co_id;
 #elif PGSQL_ODBC
